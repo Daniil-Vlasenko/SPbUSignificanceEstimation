@@ -411,9 +411,9 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
     int lengthOfSeedAlignment = alignment.getLengthOfSeedAlignment();
     std::map<char, double> emissionsBM = backgroundModel.getEmissions();
     std::vector<std::map<char, double>> emissions = phmm.getEmissions();
-    emissionsForSample.resize(lengthOfSeedAlignment);
+    emissionsForSample.resize(lengthOfSeedAlignment * 3 + 3);
 
-    for(int i = 0; i < lengthOfSeedAlignment * 3 + 3; ++i) {
+    for(int i = 1; i < lengthOfSeedAlignment * 3 + 2; ++i) {
         emissionsForSample[i]['-'] = emissionsBM['-'] * pow(emissions[i]['-'], Tln) / averageEmissions[i];
         emissionsForSample[i]['A'] = emissionsBM['A'] * pow(emissions[i]['A'], Tln) / averageEmissions[i];
         emissionsForSample[i]['C'] = emissionsBM['C'] * pow(emissions[i]['C'], Tln) / averageEmissions[i];
@@ -421,4 +421,11 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
         emissionsForSample[i]['E'] = emissionsBM['E'] * pow(emissions[i]['E'], Tln) / averageEmissions[i];
         emissionsForSample[i]['F'] = emissionsBM['F'] * pow(emissions[i]['F'], Tln) / averageEmissions[i];
     }
+
+//    for(auto f: emissionsForSample) {
+//        for(auto inf: f){
+//            std::cout << inf.second << ' ';
+//        }
+//        std::cout << std::endl;
+//    }
 }
