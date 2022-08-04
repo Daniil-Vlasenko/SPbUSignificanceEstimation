@@ -22,6 +22,7 @@ public:
     Alignment();
     Alignment(std::string alignmentFileName, double threshold);
     std::string getAlignmentFileName();
+    double getThreshold();
     int getNumberOfStrings();
     int getLengthOfAlignment();
     int getLengthOfSeedAlignment();
@@ -72,6 +73,11 @@ private:
 
 public:
     SignificanceEstimation(std::string alignmentFileName, double threshold, double pseudocountValue);
+    Alignment getAlignment();
+    BackgroundModel getBackgroundModel();
+    PHMM getPhmm();
+    Sample getSample();
+    std::vector<std::vector<double>> getTransitionsForSample();
     // Calculation of Z(D,T). If T = 1, result is the probability of sequence.
     double partitionFunction(std::string sequence, double T);
     // Calculation of average emissions for Z(T).

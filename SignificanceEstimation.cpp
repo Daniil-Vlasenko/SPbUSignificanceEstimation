@@ -40,15 +40,23 @@ Alignment::Alignment(std::string alignmentFileName, double threshold) :
 std::string Alignment::getAlignmentFileName() {
     return alignmentFileName;
 }
+
+double Alignment::getThreshold() {
+    return threshold;
+}
+
 int Alignment::getNumberOfStrings() {
     return numberOfStrings;
 }
+
 int Alignment::getLengthOfAlignment() {
     return lengthOfAlignment;
 }
+
 int Alignment::getLengthOfSeedAlignment() {
     return lengthOfSeedAlignment;
 }
+
 std::vector<bool> Alignment::getColumns() {
     return columns;
 }
@@ -232,6 +240,26 @@ std::vector<std::map<char, double>> PHMM::getEmissions() {
 SignificanceEstimation::SignificanceEstimation(std::string alignmentFileName, double threshold, double pseudocountValue) :
         alignment(alignmentFileName, threshold), phmm(alignment, pseudocountValue) {
 
+}
+
+Alignment SignificanceEstimation::getAlignment() {
+    return alignment;
+}
+
+BackgroundModel SignificanceEstimation::getBackgroundModel() {
+    return backgroundModel;
+}
+
+PHMM SignificanceEstimation::getPhmm() {
+    return phmm;
+}
+
+Sample SignificanceEstimation::getSample() {
+    return sample;
+}
+
+std::vector<std::vector<double>> SignificanceEstimation::getTransitionsForSample() {
+    return transitionsForSample;
 }
 
 double  SignificanceEstimation::partitionFunction(std::string sequence, double T) {

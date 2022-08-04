@@ -1,0 +1,10 @@
+# ninja log v5
+1	418	1659628675543293061	CMakeFiles/SPBUSignificanceEstimation.dir/main.cpp.o	35f805c7d3c606cf
+0	708	1659628675835286291	CMakeFiles/SPBUSignificanceEstimation.dir/SignificanceEstimation.cpp.o	af1be7edb27375a7
+708	767	1659628675895284900	SPBUSignificanceEstimation	f9c32cd09b3ad1a
+0	434	1659629735411692670	CMakeFiles/SPBUSignificanceEstimation.dir/main.cpp.o	35f805c7d3c606cf
+434	510	1659629735487693063	SPBUSignificanceEstimation	f9c32cd09b3ad1a
+0	421	1659629745315745938	CMakeFiles/SPBUSignificanceEstimation.dir/main.cpp.o	35f805c7d3c606cf
+421	485	1659629745379746295	SPBUSignificanceEstimation	f9c32cd09b3ad1a
+0	405	1659629756483810753	CMakeFiles/SPBUSignificanceEstimation.dir/main.cpp.o	35f805c7d3c606cf
+405	473	1659629756547811138	SPBUSignificanceEstimation	f9c32cd09b3ad1a
