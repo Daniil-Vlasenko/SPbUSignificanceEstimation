@@ -56,15 +56,26 @@ public:
 
 class Sample {
 private:
-    std::vector<std::vector<double>> transitions;
+
+
 public:
-    std::vector<std::vector<double>> getTransitions();
+
 };
 
 class SignificanceEstimation {
+private:
     Alignment alignment;
     BackgroundModel backgroundModel;
     PHMM phmm;
     Sample sample;
+    std::vector<std::vector<double>> transitionsForSample;
 
+public:
+    SignificanceEstimation(std::string alignmentFileName, double threshold, double pseudocountValue);
+    // Calculation of Z(D,T). If T = 1, result is the probability of sequence.
+    double partitionFunction(std::string sequence, double T);
+    // Calculation of average emissions for Z(T).
+    std::vector<double> averageEmissions(double T);
+    // Calculation of Z(T).
+    double Z(double T);
 };
