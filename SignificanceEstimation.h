@@ -69,7 +69,10 @@ private:
     BackgroundModel backgroundModel;
     PHMM phmm;
     Sample sample;
+    double Z;
+    std::vector<double> averageEmissions;
     std::vector<std::vector<double>> transitionsForSample;
+    std::vector<std::map<char, double>> emissionsForSample;
 
 public:
     SignificanceEstimation(std::string alignmentFileName, double threshold, double pseudocountValue);
@@ -78,10 +81,14 @@ public:
     PHMM getPhmm();
     Sample getSample();
     std::vector<std::vector<double>> getTransitionsForSample();
+    std::vector<std::map<char, double>> getEmissionsForSample();
     // Calculation of Z(D,T). If T = 1, result is the probability of sequence.
     double partitionFunction(std::string sequence, double T);
     // Calculation of average emissions for Z(T).
-    std::vector<double> averageEmissions(double T);
-    // Calculation of Z(T).
-    double Z(double T);
+    void averageEmissionsCalculation(double T);
+    // Calculation of Z(T) and transitionsForSample.
+    double ZCalculation(double T);
+    // Calculation of emissionsForSample.
+    void emissionsForSampleCalculation(double T);
+
 };

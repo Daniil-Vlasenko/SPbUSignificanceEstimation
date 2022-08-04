@@ -24,7 +24,7 @@ int main() {
     std::cout << std::endl;
     std::cout << significanceEstimation.partitionFunction("ACDEFACADF", 1) << std::endl;
     std::cout << std::endl;
-    std::cout << significanceEstimation.Z(1) << std::endl;
+    std::cout << significanceEstimation.ZCalculation(1) << std::endl;
 
     return 0;
 };
