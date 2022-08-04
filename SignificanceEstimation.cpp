@@ -413,6 +413,8 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
     std::vector<std::map<char, double>> emissions = phmm.getEmissions();
     emissionsForSample.resize(lengthOfSeedAlignment * 3 + 3);
 
+    emissionsForSample[0]['-'] = 0; emissionsForSample[0]['A'] = 0; emissionsForSample[0]['C'] = 0;
+    emissionsForSample[0]['D'] = 0; emissionsForSample[0]['E'] = 0; emissionsForSample[0]['F'] = 0;
     for(int i = 1; i < lengthOfSeedAlignment * 3 + 2; ++i) {
         emissionsForSample[i]['-'] = emissionsBM['-'] * pow(emissions[i]['-'], Tln) / averageEmissions[i];
         emissionsForSample[i]['A'] = emissionsBM['A'] * pow(emissions[i]['A'], Tln) / averageEmissions[i];
@@ -421,11 +423,14 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
         emissionsForSample[i]['E'] = emissionsBM['E'] * pow(emissions[i]['E'], Tln) / averageEmissions[i];
         emissionsForSample[i]['F'] = emissionsBM['F'] * pow(emissions[i]['F'], Tln) / averageEmissions[i];
     }
+    emissionsForSample[lengthOfSeedAlignment * 3 + 2]['-'] = 0; emissionsForSample[lengthOfSeedAlignment * 3 + 2]['A'] = 0;
+    emissionsForSample[lengthOfSeedAlignment * 3 + 2]['C'] = 0; emissionsForSample[lengthOfSeedAlignment * 3 + 2]['D'] = 0;
+    emissionsForSample[lengthOfSeedAlignment * 3 + 2]['E'] = 0; emissionsForSample[lengthOfSeedAlignment * 3 + 2]['F'] = 0;
 
-//    for(auto f: emissionsForSample) {
-//        for(auto inf: f){
-//            std::cout << inf.second << ' ';
-//        }
-//        std::cout << std::endl;
-//    }
+    for(auto f: emissionsForSample) {
+        for(auto inf: f){
+            std::cout << inf.second << ' ';
+        }
+        std::cout << std::endl;
+    }
 }
