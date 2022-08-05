@@ -252,16 +252,19 @@ std::string Sample::sampleSequence(Alignment alignment, const std::vector<std::m
         lengthOfSeedAlignment = alignment.getLengthOfSeedAlignment();
     std::string sequence;
     int tmpState = lengthOfSeedAlignment * 3 + 2;
-    // Case of the end of the path equal to is similar to the case of match/mismatch.
+    // Case of the end of the path is similar to the case of match/mismatch.
     for(int x = lengthOfAlignment - 1; x > 0; --x) {
-        double sum = 0, a = distribution(generator);
+        double sum = 0, normalisation = 0, a = distribution(generator);
         switch(tmpState % 3) {
             case 0:
-                if((sum += transitionsForSample[tmpState - 2][x - 1]) >= a) {
+                normalisation = transitionsForSample[tmpState - 2][x - 1] +
+                        transitionsForSample[tmpState - 3][x - 1] +
+                        transitionsForSample[tmpState - 4][x - 1];
+                if((sum += transitionsForSample[tmpState - 2][x - 1] / normalisation) >= a) {
                     tmpState -= 2;
                     sequence += sampleEmission(tmpState, emissionsForSample);
                 }
-                else if((sum += transitionsForSample[tmpState - 3][x - 1]) >= a) {
+                else if((sum += transitionsForSample[tmpState - 3][x - 1] / normalisation) >= a) {
                     tmpState -= 3;
                     sequence += '-';
                 }
@@ -271,29 +274,35 @@ std::string Sample::sampleSequence(Alignment alignment, const std::vector<std::m
                 }
                 break;
             case 1:
-                if((sum += transitionsForSample[tmpState - 1][x - 1]) >= a) {
+                normalisation = transitionsForSample[tmpState][x - 1] +
+                                transitionsForSample[tmpState - 1][x - 1] +
+                                transitionsForSample[tmpState - 2][x - 1];
+                if((sum += transitionsForSample[tmpState][x - 1] / normalisation) >= a) {
+                    sequence += sampleEmission(tmpState, emissionsForSample);
+                }
+                else if((sum += transitionsForSample[tmpState - 1][x - 1] / normalisation) >= a) {
+                    tmpState -= 1;
+                    sequence += '-';
+                }
+                else {
+                    tmpState -= 2;
+                    sequence += sampleEmission(tmpState, emissionsForSample);
+                }
+                break;
+            default:
+                normalisation = transitionsForSample[tmpState - 1][x - 1] +
+                                transitionsForSample[tmpState - 2][x - 1] +
+                                transitionsForSample[tmpState - 3][x - 1];
+                if((sum += transitionsForSample[tmpState - 1][x - 1] / normalisation) >= a) {
                     tmpState -= 1;
                     sequence += sampleEmission(tmpState, emissionsForSample);
                 }
-                else if((sum += transitionsForSample[tmpState - 2][x - 1]) >= a) {
+                else if((sum += transitionsForSample[tmpState - 2][x - 1] / normalisation) >= a) {
                     tmpState -= 2;
                     sequence += '-';
                 }
                 else {
                     tmpState -= 3;
-                    sequence += sampleEmission(tmpState, emissionsForSample);
-                }
-                break;
-            default:
-                if((sum += transitionsForSample[tmpState][x - 1]) >= a) {
-                    sequence += sampleEmission(tmpState, emissionsForSample);
-                }
-                else if((sum += transitionsForSample[tmpState - 1][x - 1]) >= a) {
-                    tmpState -= 1;
-                    sequence += '-';
-                }
-                else {
-                    tmpState -= 2;
                     sequence += sampleEmission(tmpState, emissionsForSample);
                 }
         }
@@ -459,12 +468,12 @@ double SignificanceEstimation::ZCalculation(double T) {
                 averageEmissions[lengthOfSeedAlignment * 3 + 1];
     }
 
-//    for(auto f: transitionsForSample) {
-//        for(auto inf: f){
-//            std::cout << inf << ' ';
-//        }
-//        std::cout << std::endl;
-//    }
+    for(auto f: transitionsForSample) {
+        for(auto inf: f){
+            std::cout << inf << ' ';
+        }
+        std::cout << std::endl;
+    }
 
     Z = transitionsForSample[lengthOfSeedAlignment * 3 - 1][lengthOfSequence - 1] +
         transitionsForSample[lengthOfSeedAlignment * 3][lengthOfSequence - 1] +
