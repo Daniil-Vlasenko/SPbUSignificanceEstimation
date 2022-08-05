@@ -234,8 +234,8 @@ std::vector<std::map<char, double>> PHMM::getEmissions() {
     return emissions;
 }
 //----------------------------------------------------------------------------------------------------------------------
-Sample::Sample() : seed(std::chrono::system_clock::now().time_since_epoch().count()),
-    generator(seed), distribution(0, 1) {}
+Sample::Sample(std::string sampleFileName) : seed(std::chrono::system_clock::now().time_since_epoch().count()),
+    generator(seed), distribution(0, 1), sampleFileName(sampleFileName) {}
 
 char Sample::sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample) {
     double a = distribution(generator), sum = 0;
@@ -311,10 +311,24 @@ std::string Sample::sampleSequence(Alignment alignment, const std::vector<std::m
     std::reverse(sequence.begin(), sequence.end());
     return sequence;
 }
-//----------------------------------------------------------------------------------------------------------------------
-SignificanceEstimation::SignificanceEstimation(std::string alignmentFileName, double threshold, double pseudocountValue) :
-        alignment(alignmentFileName, threshold), phmm(alignment, pseudocountValue) {
 
+std::string Sample::sampleSequences(int numberOfSequences, Alignment alignment,
+                            const std::vector<std::map<char, double>> &emissionsForSample,
+                            const std::vector<std::vector<double>> &transitionsForSample) {
+    std::ofstream file("../" + sampleFileName);
+    assert(file.is_open());
+
+    for(int i = 0; i < numberOfSequences; ++i)
+        file << sampleSequence(alignment, emissionsForSample, transitionsForSample) << std::endl;
+
+    file.close();
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+SignificanceEstimation::SignificanceEstimation(std::string alignmentFileName, std::string sampleFileName,
+                                               double threshold, double pseudocountValue) :
+        alignment(alignmentFileName, threshold), phmm(alignment, pseudocountValue), sample(sampleFileName) {
+    Z = 0;
 }
 
 Alignment SignificanceEstimation::getAlignment() {

@@ -63,13 +63,17 @@ private:
     unsigned seed;
     std::default_random_engine generator;
     std::uniform_real_distribution<double> distribution;
+    std::string sampleFileName;
 
 public:
-    Sample();
+    Sample(std::string sampleFileName);
     // Sample Emission for state(I, M, D).
     char sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample);
     std::string sampleSequence(Alignment alignment, const std::vector<std::map<char, double>> &emissionsForSample,
                                const std::vector<std::vector<double>> &transitionsForSample);
+    std::string sampleSequences(int numberOfSequences, Alignment alignment,
+                                const std::vector<std::map<char, double>> &emissionsForSample,
+                                const std::vector<std::vector<double>> &transitionsForSample);
 
 };
 
@@ -85,7 +89,7 @@ private:
     std::vector<std::map<char, double>> emissionsForSample;
 
 public:
-    SignificanceEstimation(std::string alignmentFileName, double threshold, double pseudocountValue);
+    SignificanceEstimation(std::string alignmentFileName, std::string sampleFileName, double threshold, double pseudocountValue);
     Alignment getAlignment();
     BackgroundModel getBackgroundModel();
     PHMM getPhmm();
