@@ -29,9 +29,6 @@ int main() {
     Sample sample = significanceEstimation.getSample();
     significanceEstimation.emissionsForSampleCalculation(1);
     Alignment alignment = significanceEstimation.getAlignment();
-    std::cout << sample.sampleSequence(alignment,
-                                       significanceEstimation.getEmissionsForSample(),
-                                       significanceEstimation.getTransitionsForSample()) << std::endl;
     sample.sampleSequences(10, alignment,
            significanceEstimation.getEmissionsForSample(),
            significanceEstimation.getTransitionsForSample());

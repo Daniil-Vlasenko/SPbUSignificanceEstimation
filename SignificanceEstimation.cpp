@@ -253,8 +253,13 @@ std::string Sample::sampleSequence(Alignment alignment, const std::vector<std::m
     std::string sequence;
     int tmpState = lengthOfSeedAlignment * 3 + 2;
     // Case of the end of the path is similar to the case of match/mismatch.
-    for(int x = lengthOfAlignment - 1; x > 0; --x) {
+    for(int x = lengthOfAlignment; x > 0; --x) {
         double sum = 0, normalisation = 0, a = distribution(generator);
+        if(tmpState < 4) {
+            tmpState = 1;
+            sequence += sampleEmission(tmpState, emissionsForSample);
+            continue;
+        }
         switch(tmpState % 3) {
             case 0:
                 normalisation = transitionsForSample[tmpState - 2][x - 1] +
@@ -318,8 +323,12 @@ std::string Sample::sampleSequences(int numberOfSequences, Alignment alignment,
     std::ofstream file("../" + sampleFileName);
     assert(file.is_open());
 
-    for(int i = 0; i < numberOfSequences; ++i)
-        file << sampleSequence(alignment, emissionsForSample, transitionsForSample) << std::endl;
+    std::string tmpString;
+    for(int i = 0; i < numberOfSequences; ++i) {
+        tmpString = sampleSequence(alignment, emissionsForSample, transitionsForSample);
+        file << tmpString << std::endl;
+        std::cout << tmpString << std::endl;
+    }
 
     file.close();
 }
