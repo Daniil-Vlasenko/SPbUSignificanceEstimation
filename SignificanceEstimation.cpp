@@ -234,8 +234,74 @@ std::vector<std::map<char, double>> PHMM::getEmissions() {
     return emissions;
 }
 //----------------------------------------------------------------------------------------------------------------------
+Sample::Sample() : seed(std::chrono::system_clock::now().time_since_epoch().count()),
+    generator(seed), distribution(0, 1) {}
 
+char Sample::sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample) {
+    double a = distribution(generator), sum = 0;
+    for(auto pair: emissionsForSample[state]) {
+        sum += pair.second;
+        if(sum >= a)
+            return pair.first;
+    }
+}
 
+std::string Sample::sampleSequence(Alignment alignment, const std::vector<std::map<char, double>> &emissionsForSample,
+                                   const std::vector<std::vector<double>> &transitionsForSample) {
+    int lengthOfAlignment = alignment.getLengthOfAlignment(),
+        lengthOfSeedAlignment = alignment.getLengthOfSeedAlignment();
+    std::string sequence;
+    int tmpState = lengthOfSeedAlignment * 3 + 2;
+    // Case of the end of the path equal to is similar to the case of match/mismatch.
+    for(int x = lengthOfAlignment - 1; x > 0; --x) {
+        double sum = 0, a = distribution(generator);
+        switch(tmpState % 3) {
+            case 0:
+                if((sum += transitionsForSample[tmpState - 2][x - 1]) >= a) {
+                    tmpState -= 2;
+                    sequence += sampleEmission(tmpState, emissionsForSample);
+                }
+                else if((sum += transitionsForSample[tmpState - 3][x - 1]) >= a) {
+                    tmpState -= 3;
+                    sequence += '-';
+                }
+                else {
+                    tmpState -= 4;
+                    sequence += sampleEmission(tmpState, emissionsForSample);
+                }
+                break;
+            case 1:
+                if((sum += transitionsForSample[tmpState - 1][x - 1]) >= a) {
+                    tmpState -= 1;
+                    sequence += sampleEmission(tmpState, emissionsForSample);
+                }
+                else if((sum += transitionsForSample[tmpState - 2][x - 1]) >= a) {
+                    tmpState -= 2;
+                    sequence += '-';
+                }
+                else {
+                    tmpState -= 3;
+                    sequence += sampleEmission(tmpState, emissionsForSample);
+                }
+                break;
+            default:
+                if((sum += transitionsForSample[tmpState][x - 1]) >= a) {
+                    sequence += sampleEmission(tmpState, emissionsForSample);
+                }
+                else if((sum += transitionsForSample[tmpState - 1][x - 1]) >= a) {
+                    tmpState -= 1;
+                    sequence += '-';
+                }
+                else {
+                    tmpState -= 2;
+                    sequence += sampleEmission(tmpState, emissionsForSample);
+                }
+        }
+    }
+
+    std::reverse(sequence.begin(), sequence.end());
+    return sequence;
+}
 //----------------------------------------------------------------------------------------------------------------------
 SignificanceEstimation::SignificanceEstimation(std::string alignmentFileName, double threshold, double pseudocountValue) :
         alignment(alignmentFileName, threshold), phmm(alignment, pseudocountValue) {
@@ -427,10 +493,10 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
     emissionsForSample[lengthOfSeedAlignment * 3 + 2]['C'] = 0; emissionsForSample[lengthOfSeedAlignment * 3 + 2]['D'] = 0;
     emissionsForSample[lengthOfSeedAlignment * 3 + 2]['E'] = 0; emissionsForSample[lengthOfSeedAlignment * 3 + 2]['F'] = 0;
 
-    for(auto f: emissionsForSample) {
-        for(auto inf: f){
-            std::cout << inf.second << ' ';
-        }
-        std::cout << std::endl;
-    }
+//    for(auto f: emissionsForSample) {
+//        for(auto inf: f){
+//            std::cout << inf.second << ' ';
+//        }
+//        std::cout << std::endl;
+//    }
 }

@@ -7,6 +7,9 @@
 #include <fstream>
 #include <cassert>
 #include <cmath>
+#include <chrono>
+#include <random>
+#include <algorithm>
 
 
 class Alignment {
@@ -57,9 +60,16 @@ public:
 
 class Sample {
 private:
-
+    unsigned seed;
+    std::default_random_engine generator;
+    std::uniform_real_distribution<double> distribution;
 
 public:
+    Sample();
+    // Sample Emission for state(I, M, D).
+    char sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample);
+    std::string sampleSequence(Alignment alignment, const std::vector<std::map<char, double>> &emissionsForSample,
+                               const std::vector<std::vector<double>> &transitionsForSample);
 
 };
 

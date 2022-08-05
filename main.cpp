@@ -26,7 +26,8 @@ int main() {
     std::cout << std::endl;
     std::cout << significanceEstimation.ZCalculation(1) << std::endl;
     std::cout << std::endl;
-    significanceEstimation.emissionsForSampleCalculation(1);
+
+
 
 
     return 0;
