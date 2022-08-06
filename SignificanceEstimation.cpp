@@ -235,7 +235,15 @@ std::vector<std::map<char, double>> PHMM::getEmissions() {
 }
 //----------------------------------------------------------------------------------------------------------------------
 Sample::Sample(std::string sampleFileName) : seed(std::chrono::system_clock::now().time_since_epoch().count()),
-    generator(seed), distribution(0, 1), sampleFileName(sampleFileName) {}
+    generator(seed), distribution(0, 1), sampleFileName(sampleFileName), numberOfSequences(0) {}
+
+std::string Sample::getSampleFileName() {
+    return sampleFileName;
+}
+
+int Sample::getNumberOfSequences() {
+    return numberOfSequences;
+}
 
 char Sample::sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample) {
     double a = distribution(generator), sum = 0;
@@ -322,12 +330,13 @@ std::string Sample::sampleSequences(int numberOfSequences, Alignment alignment,
                             const std::vector<std::vector<double>> &transitionsForSample) {
     std::ofstream file("../" + sampleFileName);
     assert(file.is_open());
+    this->numberOfSequences = numberOfSequences;
 
     std::string tmpString;
     for(int i = 0; i < numberOfSequences; ++i) {
         tmpString = sampleSequence(alignment, emissionsForSample, transitionsForSample);
         file << tmpString << std::endl;
-        std::cout << tmpString << std::endl;
+//        std::cout << tmpString << std::endl;
     }
 
     file.close();
@@ -352,7 +361,7 @@ PHMM SignificanceEstimation::getPhmm() {
     return phmm;
 }
 
-Sample SignificanceEstimation::getSample() {
+Sample& SignificanceEstimation::getSample() {
     return sample;
 }
 
@@ -491,12 +500,12 @@ double SignificanceEstimation::ZCalculation(double T) {
                 averageEmissions[lengthOfSeedAlignment * 3 + 1];
     }
 
-    for(auto f: transitionsForSample) {
-        for(auto inf: f){
-            std::cout << inf << ' ';
-        }
-        std::cout << std::endl;
-    }
+//    for(auto f: transitionsForSample) {
+//        for(auto inf: f){
+//            std::cout << inf << ' ';
+//        }
+//        std::cout << std::endl;
+//    }
 
     Z = transitionsForSample[lengthOfSeedAlignment * 3 - 1][lengthOfSequence - 1] +
         transitionsForSample[lengthOfSeedAlignment * 3][lengthOfSequence - 1] +
@@ -531,4 +540,22 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
 //        }
 //        std::cout << std::endl;
 //    }
+}
+
+double SignificanceEstimation::fprCalculation(double threshold) {
+    std::ifstream file("../" + sample.getSampleFileName());
+    assert(file.is_open());
+
+    std::string tmpString;
+    int numberOfSequences = sample.getNumberOfSequences();
+
+    double fpr = 0, tmp;
+    for(int i = 0; i < numberOfSequences; ++i) {
+        file >> tmpString;
+        fpr += (tmp = partitionFunction(tmpString, 1)) >= threshold ? tmp : 0;
+    }
+    fpr *= Z / numberOfSequences;
+
+    file.close();
+    return fpr;
 }

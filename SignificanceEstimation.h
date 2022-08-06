@@ -64,9 +64,12 @@ private:
     std::default_random_engine generator;
     std::uniform_real_distribution<double> distribution;
     std::string sampleFileName;
+    int numberOfSequences;
 
 public:
     Sample(std::string sampleFileName);
+    std::string getSampleFileName();
+    int getNumberOfSequences();
     // Sample Emission for state(I, M, D).
     char sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample);
     std::string sampleSequence(Alignment alignment, const std::vector<std::map<char, double>> &emissionsForSample,
@@ -93,7 +96,7 @@ public:
     Alignment getAlignment();
     BackgroundModel getBackgroundModel();
     PHMM getPhmm();
-    Sample getSample();
+    Sample& getSample();
     std::vector<std::vector<double>> getTransitionsForSample();
     std::vector<std::map<char, double>> getEmissionsForSample();
     // Calculation of Z(D,T). If T = 1, result is the probability of sequence.
@@ -104,5 +107,7 @@ public:
     double ZCalculation(double T);
     // Calculation of emissionsForSample.
     void emissionsForSampleCalculation(double T);
+    // Calculation of false positive rate.
+    double fprCalculation(double threshold);
 
 };
