@@ -86,7 +86,6 @@ private:
     BackgroundModel backgroundModel;
     PHMM phmm;
     Sample sample;
-    double Z;
     std::vector<double> averageEmissions;
     std::vector<std::vector<double>> transitionsForSample;
     std::vector<std::map<char, double>> emissionsForSample;
@@ -108,6 +107,6 @@ public:
     // Calculation of emissionsForSample.
     void emissionsForSampleCalculation(double T);
     // Calculation of false positive rate.
-    double fprCalculation(double threshold);
+    double fprCalculation(double threshold, double Z);
 
 };

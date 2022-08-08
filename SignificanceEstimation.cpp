@@ -32,7 +32,7 @@ Alignment::Alignment(std::string alignmentFileName, double threshold) :
     lengthOfSeedAlignment = 0;
     for(int i = 0; i < lengthOfAlignment; ++i) {
         columns[i] = (double) countOfGaps[i] / numberOfStrings < threshold;    // false = ignored column.
-        lengthOfSeedAlignment = columns[i] ? ++lengthOfSeedAlignment : lengthOfSeedAlignment;
+        lengthOfSeedAlignment += columns[i] ? 1 : 0;
     }
 
     file.close();
@@ -345,9 +345,7 @@ std::string Sample::sampleSequences(int numberOfSequences, Alignment alignment,
 //----------------------------------------------------------------------------------------------------------------------
 SignificanceEstimation::SignificanceEstimation(std::string alignmentFileName, std::string sampleFileName,
                                                double threshold, double pseudocountValue) :
-        alignment(alignmentFileName, threshold), phmm(alignment, pseudocountValue), sample(sampleFileName) {
-    Z = 0;
-}
+        alignment(alignmentFileName, threshold), phmm(alignment, pseudocountValue), sample(sampleFileName) {}
 
 Alignment SignificanceEstimation::getAlignment() {
     return alignment;
@@ -507,10 +505,10 @@ double SignificanceEstimation::ZCalculation(double T) {
 //        std::cout << std::endl;
 //    }
 
-    Z = transitionsForSample[lengthOfSeedAlignment * 3 - 1][lengthOfSequence - 1] +
+    return transitionsForSample[lengthOfSeedAlignment * 3 - 1][lengthOfSequence - 1] +
         transitionsForSample[lengthOfSeedAlignment * 3][lengthOfSequence - 1] +
         transitionsForSample[lengthOfSeedAlignment * 3 + 1][lengthOfSequence - 1];
-    return Z;
+
 }
 
 void SignificanceEstimation::emissionsForSampleCalculation(double T) {
@@ -542,7 +540,7 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
 //    }
 }
 
-double SignificanceEstimation::fprCalculation(double threshold) {
+double SignificanceEstimation::fprCalculation(double threshold, double Z) {
     std::ifstream file("../" + sample.getSampleFileName());
     assert(file.is_open());
 
