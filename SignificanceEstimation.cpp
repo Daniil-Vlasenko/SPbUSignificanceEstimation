@@ -447,6 +447,9 @@ void SignificanceEstimation::averageEmissionsCalculation(double T) {
                 emissionsBM['E'] * pow(emissions[y]['E'], Tln) +
                 emissionsBM['F'] * pow(emissions[y]['F'], Tln);
     }
+
+//    for(auto inv: averageEmissions)
+//        std:: cout << inv << std::endl;
 }
 
 double SignificanceEstimation::ZCalculation(double T) {
@@ -508,7 +511,6 @@ double SignificanceEstimation::ZCalculation(double T) {
     return transitionsForSample[lengthOfSeedAlignment * 3 - 1][lengthOfSequence - 1] +
         transitionsForSample[lengthOfSeedAlignment * 3][lengthOfSequence - 1] +
         transitionsForSample[lengthOfSeedAlignment * 3 + 1][lengthOfSequence - 1];
-
 }
 
 void SignificanceEstimation::emissionsForSampleCalculation(double T) {
