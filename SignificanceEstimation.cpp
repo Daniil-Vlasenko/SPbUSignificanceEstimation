@@ -64,6 +64,14 @@ std::vector<bool> Alignment::getColumns() {
 std::map<char, double> BackgroundModel::getEmissions() {
     return emissions;
 }
+
+double BackgroundModel::probabilityOfString(std::string sequence) {
+    double probability = 1;
+    for(char ins: sequence)
+        probability *= emissions[ins];
+
+    return probability;
+}
 //----------------------------------------------------------------------------------------------------------------------
 void PHMM::PHMMCount(Alignment alignment) {
     std::ifstream file("../" + alignment.getAlignmentFileName());
@@ -493,20 +501,20 @@ double SignificanceEstimation::ZCalculation(double T) {
     // Completion.
     for(int x = 1; x < lengthOfSequence; ++x) {
         transitionsForSample[lengthOfSeedAlignment * 3 + 1][x] = (transitionsForSample[lengthOfSeedAlignment * 3 - 1][x - 1] *
-                pow(transitions[lengthOfSeedAlignment * 3 - 1][lengthOfSeedAlignment - 2], Tln) +
+                pow(transitions[lengthOfSeedAlignment * 3 - 1][lengthOfSeedAlignment * 3 + 1], Tln) +
                 transitionsForSample[lengthOfSeedAlignment * 3][x - 1] *
-                pow(transitions[lengthOfSeedAlignment * 3][lengthOfSeedAlignment - 2], Tln) +
+                pow(transitions[lengthOfSeedAlignment * 3][lengthOfSeedAlignment * 3 + 1], Tln) +
                 transitionsForSample[lengthOfSeedAlignment * 3 + 1][x - 1] *
-                pow(transitions[lengthOfSeedAlignment * 3 + 1][lengthOfSeedAlignment - 2], Tln)) *
+                pow(transitions[lengthOfSeedAlignment * 3 + 1][lengthOfSeedAlignment * 3 + 1], Tln)) *
                 averageEmissions[lengthOfSeedAlignment * 3 + 1];
     }
 
-//    for(auto f: transitionsForSample) {
-//        for(auto inf: f){
-//            std::cout << inf << ' ';
-//        }
-//        std::cout << std::endl;
-//    }
+    for(auto f: transitionsForSample) {
+        for(auto inf: f){
+            std::cout << inf << ' ';
+        }
+        std::cout << std::endl;
+    }
 
     return transitionsForSample[lengthOfSeedAlignment * 3 - 1][lengthOfSequence - 1] +
         transitionsForSample[lengthOfSeedAlignment * 3][lengthOfSequence - 1] +

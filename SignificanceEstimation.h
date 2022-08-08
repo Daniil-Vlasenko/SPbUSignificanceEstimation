@@ -38,6 +38,7 @@ private:
                                         {'D', 1./6}, {'E', 1./6}, {'F', 1./6},};
 public:
     std::map<char, double> getEmissions();
+    double probabilityOfString(std::string sequence);
 };
 
 class PHMM {
@@ -98,7 +99,7 @@ public:
     Sample& getSample();
     std::vector<std::vector<double>> getTransitionsForSample();
     std::vector<std::map<char, double>> getEmissionsForSample();
-    // Calculation of Z(D,T). If T = 1, result is the probability of sequence.
+    // Calculation of Z(D,T). If T = 1, result is the probabilityOfString of sequence.
     double partitionFunction(std::string sequence, double T);
     // Calculation of average emissions for Z(T).
     void averageEmissionsCalculation(double T);
