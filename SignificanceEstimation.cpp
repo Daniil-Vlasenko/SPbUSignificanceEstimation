@@ -270,6 +270,8 @@ std::string Sample::sampleSequence(Alignment alignment, const std::vector<std::m
     int tmpState = lengthOfSeedAlignment * 3 + 2;
     // Case of the end of the path is similar to the case of match/mismatch.
     for(int x = lengthOfAlignment; x > 0; --x) {
+        if(x == 5)
+            std::cout << tmpState % 3;
         double sum = 0, normalisation = 0, a = distribution(generator);
         if(tmpState < 4) {
             tmpState = 1;
