@@ -27,6 +27,7 @@ int main() {
     std::cout << std::endl << significanceEstimation.partitionFunction("ADDEFAAADF", T) << std::endl;
     std::cout << std::endl << backgroundModel.probabilityOfString("ADDEFAAADF") << std::endl;
     std::cout << std::endl << significanceEstimation.ZCalculation(10, T) << std::endl;
+    significanceEstimation.emissionsForSampleCalculation(T);
 
 
 //    std::cout << std::endl << significanceEstimation.ZCalculation(T) << std::endl;

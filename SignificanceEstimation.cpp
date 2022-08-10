@@ -200,10 +200,8 @@ void PHMM::PHMMPseudocountsAndNormalizationEm(Alignment alignment, double pseudo
     double sum;
     int lengthOfSeedAlignment = alignment.getLengthOfSeedAlignment();
     for(int y = 1; y < lengthOfSeedAlignment * 3 + 2; ++y) {
-        if(y % 3 == 0) {
-            emissions[y]['-'] = 1;
+        if(y % 3 == 0)
             continue;
-        }
         sum = 0;
         for (auto& x: emissions[y]) {
             if (x.first != '-' && x.second == 0)
@@ -222,8 +220,8 @@ PHMM::PHMM(Alignment alignment, double pseudocountValue) {
     emissions.resize(lengthOfSeedAlignment * 3 + 3);
     for(int i = 0; i < lengthOfSeedAlignment * 3 + 3; ++i) {
         transitions[i].resize(lengthOfSeedAlignment * 3 + 3);
-        emissions[i]['-'] = 0; emissions[i]['A'] = 0; emissions[i]['C'] = 0;
-        emissions[i]['D'] = 0; emissions[i]['E'] = 0; emissions[i]['F'] = 0;
+        emissions[i]['A'] = 0; emissions[i]['C'] = 0; emissions[i]['D'] = 0;
+        emissions[i]['E'] = 0; emissions[i]['F'] = 0;
     }
 
     // Count transitions and emissions.
@@ -254,6 +252,7 @@ int Sample::getNumberOfSequences() {
 }
 
 char Sample::sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample) {
+    assert(state % 3 != 0);
     double a = distribution(generator), sum = 0;
     for(auto pair: emissionsForSample[state]) {
         sum += pair.second;
@@ -479,70 +478,70 @@ double SignificanceEstimation::ZCalculation(int lengthOfSequence, double T) {
     int lengthOfSeedAlignment = alignment.getLengthOfSeedAlignment();
     std::vector<std::vector<double>> transitions = phmm.getTransitions();
     averageEmissionsCalculation(T);
-    std::vector<std::vector<double>> forward(lengthOfSeedAlignment * 3 + 1);
-    for(std::vector<double>& v: forward)
+    transitionsForSample.resize(lengthOfSeedAlignment * 3 + 1);
+    for(std::vector<double>& v: transitionsForSample)
         v.resize(lengthOfSequence + 1);
 
     // Case of the first column.
-    forward[2][0] = pow(transitions[0][3], Tln);
+    transitionsForSample[2][0] = pow(transitions[0][3], Tln);
     for(int y = 5; y < lengthOfSeedAlignment * 3; y += 3) {
-        forward[y][0] = forward[y - 3][0] * pow(transitions[y - 2][y + 1], Tln);
+        transitionsForSample[y][0] = transitionsForSample[y - 3][0] * pow(transitions[y - 2][y + 1], Tln);
     }
     // Case of the second column.
-    forward[0][1] = pow(transitions[0][1], Tln) * averageEmissions[1];
-    forward[1][1] = pow(transitions[0][2], Tln) * averageEmissions[2];
-    forward[2][1] = pow(transitions[1][3], Tln);
+    transitionsForSample[0][1] = pow(transitions[0][1], Tln) * averageEmissions[1];
+    transitionsForSample[1][1] = pow(transitions[0][2], Tln) * averageEmissions[2];
+    transitionsForSample[2][1] = pow(transitions[1][3], Tln);
     for(int y = 3; y < lengthOfSeedAlignment * 3; y += 3) {
-        forward[y][1] = forward[y - 1][0] * pow(transitions[y][y + 1], Tln) *
+        transitionsForSample[y][1] = transitionsForSample[y - 1][0] * pow(transitions[y][y + 1], Tln) *
                 averageEmissions[y + 1];
-        forward[y + 1][1] = forward[y - 1][0] * pow(transitions[y][y + 2], Tln) *
+        transitionsForSample[y + 1][1] = transitionsForSample[y - 1][0] * pow(transitions[y][y + 2], Tln) *
                 averageEmissions[y + 2];
-        forward[y + 2][1] = forward[y - 2][1] * pow(transitions[y - 1][y + 3], Tln) +
-                forward[y - 1][1] * pow(transitions[y][y + 3], Tln) +
-                forward[y][1] * pow(transitions[y + 1][y + 3], Tln);
+        transitionsForSample[y + 2][1] = transitionsForSample[y - 2][1] * pow(transitions[y - 1][y + 3], Tln) +
+                transitionsForSample[y - 1][1] * pow(transitions[y][y + 3], Tln) +
+                transitionsForSample[y][1] * pow(transitions[y + 1][y + 3], Tln);
     }
-    forward[lengthOfSeedAlignment * 3][1] = forward[lengthOfSeedAlignment * 3 - 1][0] *
+    transitionsForSample[lengthOfSeedAlignment * 3][1] = transitionsForSample[lengthOfSeedAlignment * 3 - 1][0] *
             pow(transitions[lengthOfSeedAlignment * 3][lengthOfSeedAlignment * 3 + 1], Tln) *
             averageEmissions[lengthOfSeedAlignment * 3 + 1];
     // Case of other columns.
     for(int x = 2; x < lengthOfSequence + 1; ++x) {
-        forward[0][x] = forward[0][x - 1] * pow(transitions[1][1], Tln) *
+        transitionsForSample[0][x] = transitionsForSample[0][x - 1] * pow(transitions[1][1], Tln) *
                 averageEmissions[1];
-        forward[1][x] = forward[0][x - 1] * pow(transitions[1][2], Tln) *
+        transitionsForSample[1][x] = transitionsForSample[0][x - 1] * pow(transitions[1][2], Tln) *
                 averageEmissions[2];
-        forward[2][x] = forward[0][x] * pow(transitions[1][3], Tln);
+        transitionsForSample[2][x] = transitionsForSample[0][x] * pow(transitions[1][3], Tln);
         for(int y = 3; y < lengthOfSeedAlignment * 3; y += 3) {
-            forward[y][x] = (forward[y - 2][x - 1] * pow(transitions[y - 1][y + 1], Tln) +
-                    forward[y - 1][x - 1] * pow(transitions[y][y + 1], Tln) +
-                    forward[y][x - 1] * pow(transitions[y + 1][y + 1], Tln)) *
+            transitionsForSample[y][x] = (transitionsForSample[y - 2][x - 1] * pow(transitions[y - 1][y + 1], Tln) +
+                    transitionsForSample[y - 1][x - 1] * pow(transitions[y][y + 1], Tln) +
+                    transitionsForSample[y][x - 1] * pow(transitions[y + 1][y + 1], Tln)) *
                     averageEmissions[y + 1];
-            forward[y + 1][x] = (forward[y - 2][x - 1] * pow(transitions[y - 1][y + 2], Tln) +
-                    forward[y - 1][x - 1] * pow(transitions[y][y + 2], Tln) +
-                    forward[y][x - 1] * pow(transitions[y + 1][y + 2], Tln)) *
+            transitionsForSample[y + 1][x] = (transitionsForSample[y - 2][x - 1] * pow(transitions[y - 1][y + 2], Tln) +
+                    transitionsForSample[y - 1][x - 1] * pow(transitions[y][y + 2], Tln) +
+                    transitionsForSample[y][x - 1] * pow(transitions[y + 1][y + 2], Tln)) *
                     averageEmissions[y + 2];
-            forward[y + 2][x] = forward[y - 2][x] * pow(transitions[y - 1][y + 3], Tln) +
-                    forward[y - 1][x] * pow(transitions[y][y + 3], Tln) +
-                    forward[y][x] * pow(transitions[y + 1][y + 3], Tln);
+            transitionsForSample[y + 2][x] = transitionsForSample[y - 2][x] * pow(transitions[y - 1][y + 3], Tln) +
+                    transitionsForSample[y - 1][x] * pow(transitions[y][y + 3], Tln) +
+                    transitionsForSample[y][x] * pow(transitions[y + 1][y + 3], Tln);
         }
-        forward[lengthOfSeedAlignment * 3][x] = (forward[lengthOfSeedAlignment * 3 - 2][x - 1] *
+        transitionsForSample[lengthOfSeedAlignment * 3][x] = (transitionsForSample[lengthOfSeedAlignment * 3 - 2][x - 1] *
                 pow(transitions[lengthOfSeedAlignment * 3 - 1][lengthOfSeedAlignment * 3 + 1], Tln) +
-                forward[lengthOfSeedAlignment * 3 - 1][x - 1] *
+                transitionsForSample[lengthOfSeedAlignment * 3 - 1][x - 1] *
                 pow(transitions[lengthOfSeedAlignment * 3][lengthOfSeedAlignment * 3 + 1], Tln) +
-                forward[lengthOfSeedAlignment * 3][x - 1] *
+                transitionsForSample[lengthOfSeedAlignment * 3][x - 1] *
                 pow(transitions[lengthOfSeedAlignment  * 3 + 1][lengthOfSeedAlignment * 3 + 1], Tln)) *
                 averageEmissions[lengthOfSeedAlignment * 3 + 1];
     }
 
-//    for(auto f: forward) {
+//    for(auto f: transitionsForSample) {
 //        for(auto inf: f){
 //            std::cout << inf << ' ';
 //        }
 //        std::cout << std::endl;
 //    }
 
-    return forward[lengthOfSeedAlignment * 3 - 2][lengthOfSequence] +
-           forward[lengthOfSeedAlignment * 3 - 1][lengthOfSequence] +
-           forward[lengthOfSeedAlignment * 3][lengthOfSequence];
+    return transitionsForSample[lengthOfSeedAlignment * 3 - 2][lengthOfSequence] +
+           transitionsForSample[lengthOfSeedAlignment * 3 - 1][lengthOfSequence] +
+           transitionsForSample[lengthOfSeedAlignment * 3][lengthOfSequence];
 }
 
 void SignificanceEstimation::emissionsForSampleCalculation(double T) {
@@ -552,19 +551,15 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
     std::vector<std::map<char, double>> emissions = phmm.getEmissions();
     emissionsForSample.resize(lengthOfSeedAlignment * 3 + 3);
 
-    emissionsForSample[0]['-'] = 0; emissionsForSample[0]['A'] = 0; emissionsForSample[0]['C'] = 0;
-    emissionsForSample[0]['D'] = 0; emissionsForSample[0]['E'] = 0; emissionsForSample[0]['F'] = 0;
     for(int i = 1; i < lengthOfSeedAlignment * 3 + 2; ++i) {
-        emissionsForSample[i]['-'] = emissionsBM['-'] * pow(emissions[i]['-'], Tln) / averageEmissions[i];
+        if(i % 3 == 0)
+            continue;
         emissionsForSample[i]['A'] = emissionsBM['A'] * pow(emissions[i]['A'], Tln) / averageEmissions[i];
         emissionsForSample[i]['C'] = emissionsBM['C'] * pow(emissions[i]['C'], Tln) / averageEmissions[i];
         emissionsForSample[i]['D'] = emissionsBM['D'] * pow(emissions[i]['D'], Tln) / averageEmissions[i];
         emissionsForSample[i]['E'] = emissionsBM['E'] * pow(emissions[i]['E'], Tln) / averageEmissions[i];
         emissionsForSample[i]['F'] = emissionsBM['F'] * pow(emissions[i]['F'], Tln) / averageEmissions[i];
     }
-    emissionsForSample[lengthOfSeedAlignment * 3 + 2]['-'] = 0; emissionsForSample[lengthOfSeedAlignment * 3 + 2]['A'] = 0;
-    emissionsForSample[lengthOfSeedAlignment * 3 + 2]['C'] = 0; emissionsForSample[lengthOfSeedAlignment * 3 + 2]['D'] = 0;
-    emissionsForSample[lengthOfSeedAlignment * 3 + 2]['E'] = 0; emissionsForSample[lengthOfSeedAlignment * 3 + 2]['F'] = 0;
 
 //    for(auto f: emissionsForSample) {
 //        for(auto inf: f){
