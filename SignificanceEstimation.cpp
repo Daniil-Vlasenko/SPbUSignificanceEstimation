@@ -399,7 +399,7 @@ double  SignificanceEstimation::partitionFunction(std::string sequence, double T
     // Case of the second column.
     forward[1][0] = pow(transitions[0][1], Tln) * pow(emissions[1][sequence[0]], Tln);
     forward[1][1] = pow(transitions[0][2], Tln) * pow(emissions[2][sequence[0]], Tln);
-    forward[1][2] = pow(transitions[0][3], Tln);
+    forward[1][2] = pow(transitions[1][3], Tln);
     for(int y = 3; y < lengthOfSeedAlignment * 3; y += 3) {
         forward[1][y] = forward[0][y - 1] * pow(transitions[y][y + 1], Tln) *
                 pow(emissions[y + 1][sequence[0]], Tln);
@@ -419,7 +419,7 @@ double  SignificanceEstimation::partitionFunction(std::string sequence, double T
         forward[x][1] = forward[x - 1][0] * pow(transitions[1][2], Tln) *
                             pow(emissions[2][sequence[x - 1]], Tln);
         forward[x][2] = forward[x][0] * pow(transitions[1][3], Tln);
-        for(int y = 3; y < lengthOfSeedAlignment * 3; y+= 3) {
+        for(int y = 3; y < lengthOfSeedAlignment * 3; y += 3) {
             forward[x][y] = (forward[x - 1][y - 2] * pow(transitions[y - 1][y + 1], Tln) +
                     forward[x - 1][y - 1] * pow(transitions[y][y + 1], Tln) +
                     forward[x - 1][y] * pow(transitions[y + 1][y + 1], Tln)) *
@@ -440,6 +440,17 @@ double  SignificanceEstimation::partitionFunction(std::string sequence, double T
                 pow(transitions[lengthOfSeedAlignment  * 3 + 1][lengthOfSeedAlignment * 3 + 1], Tln)) *
                 pow(emissions[lengthOfSeedAlignment * 3 + 1][sequence[x - 1]], Tln);
     }
+
+    for(auto f: forward) {
+        for(auto inf: f){
+            std::cout << inf << ' ';
+        }
+        std::cout << std::endl;
+    }
+
+    return forward[lengthOfSequence][lengthOfSeedAlignment * 3 - 2] +
+            forward[lengthOfSequence][lengthOfSeedAlignment * 3 - 1] +
+            forward[lengthOfSequence][lengthOfSeedAlignment * 3];
 }
 
 void SignificanceEstimation::averageEmissionsCalculation(double T) {
