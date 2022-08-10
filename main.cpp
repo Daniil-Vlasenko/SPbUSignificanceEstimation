@@ -23,7 +23,7 @@ int main() {
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl << significanceEstimation.partitionFunction("ACFEFAAFDF", T) << std::endl;
+    std::cout << std::endl << significanceEstimation.partitionFunction("ACFEFFDF", T) << std::endl;
 //    std::cout << std::endl << significanceEstimation.ZCalculation(T) << std::endl;
 //    significanceEstimation.emissionsForSampleCalculation(T);
 //    Sample sample = significanceEstimation.getSample();

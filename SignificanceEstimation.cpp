@@ -392,51 +392,51 @@ double  SignificanceEstimation::partitionFunction(std::string sequence, double T
         v.resize(lengthOfSequence + 1);
 
     // Case of the first column.
-    forward[0][2] = pow(transitions[0][3], Tln);
+    forward[2][0] = pow(transitions[0][3], Tln);
     for(int y = 5; y < lengthOfSeedAlignment * 3; y += 3) {
-        forward[0][y] = forward[0][y - 3] * pow(transitions[y - 2][y + 1], Tln);
+        forward[y][0] = forward[y - 3][0] * pow(transitions[y - 2][y + 1], Tln);
     }
     // Case of the second column.
-    forward[1][0] = pow(transitions[0][1], Tln) * pow(emissions[1][sequence[0]], Tln);
+    forward[0][1] = pow(transitions[0][1], Tln) * pow(emissions[1][sequence[0]], Tln);
     forward[1][1] = pow(transitions[0][2], Tln) * pow(emissions[2][sequence[0]], Tln);
-    forward[1][2] = pow(transitions[1][3], Tln);
+    forward[2][1] = pow(transitions[1][3], Tln);
     for(int y = 3; y < lengthOfSeedAlignment * 3; y += 3) {
-        forward[1][y] = forward[0][y - 1] * pow(transitions[y][y + 1], Tln) *
+        forward[y][1] = forward[y - 1][0] * pow(transitions[y][y + 1], Tln) *
                 pow(emissions[y + 1][sequence[0]], Tln);
-        forward[1][y + 1] = forward[0][y - 1] * pow(transitions[y][y + 2], Tln) *
+        forward[y + 1][1] = forward[y - 1][0] * pow(transitions[y][y + 2], Tln) *
                 pow(emissions[y + 2][sequence[0]], Tln);
-        forward[1][y + 2] = forward[1][y - 2] * pow(transitions[y - 1][y + 3], Tln) +
-                forward[1][y - 1] * pow(transitions[y][y + 3], Tln) +
-                forward[1][y] * pow(transitions[y + 1][y + 3], Tln);
+        forward[y + 2][1] = forward[y - 2][1] * pow(transitions[y - 1][y + 3], Tln) +
+                forward[y - 1][1] * pow(transitions[y][y + 3], Tln) +
+                forward[y][1] * pow(transitions[y + 1][y + 3], Tln);
     }
-    forward[1][lengthOfSeedAlignment * 3] = forward[0][lengthOfSeedAlignment * 3 - 1] *
+    forward[lengthOfSeedAlignment * 3][1] = forward[lengthOfSeedAlignment * 3 - 1][0] *
             pow(transitions[lengthOfSeedAlignment * 3][lengthOfSeedAlignment * 3 + 1], Tln) *
             pow(emissions[lengthOfSeedAlignment * 3 + 1][sequence[0]], Tln);
     // Case of other columns.
     for(int x = 2; x < lengthOfSequence + 1; ++x) {
-        forward[x][0] = forward[x - 1][0] * pow(transitions[1][1], Tln) *
+        forward[0][x] = forward[0][x - 1] * pow(transitions[1][1], Tln) *
                 pow(emissions[1][sequence[x - 1]], Tln);
-        forward[x][1] = forward[x - 1][0] * pow(transitions[1][2], Tln) *
+        forward[1][x] = forward[0][x - 1] * pow(transitions[1][2], Tln) *
                             pow(emissions[2][sequence[x - 1]], Tln);
-        forward[x][2] = forward[x][0] * pow(transitions[1][3], Tln);
+        forward[2][x] = forward[0][x] * pow(transitions[1][3], Tln);
         for(int y = 3; y < lengthOfSeedAlignment * 3; y += 3) {
-            forward[x][y] = (forward[x - 1][y - 2] * pow(transitions[y - 1][y + 1], Tln) +
-                    forward[x - 1][y - 1] * pow(transitions[y][y + 1], Tln) +
-                    forward[x - 1][y] * pow(transitions[y + 1][y + 1], Tln)) *
+            forward[y][x] = (forward[y - 2][x - 1] * pow(transitions[y - 1][y + 1], Tln) +
+                    forward[y - 1][x - 1] * pow(transitions[y][y + 1], Tln) +
+                    forward[y][x - 1] * pow(transitions[y + 1][y + 1], Tln)) *
                     pow(emissions[y + 1][sequence[x - 1]], Tln);
-            forward[x][y + 1] = (forward[x - 1][y - 2] * pow(transitions[y - 1][y + 2], Tln) +
-                    forward[x - 1][y - 1] * pow(transitions[y][y + 2], Tln) +
-                    forward[x - 1][y] * pow(transitions[y + 1][y + 2], Tln)) *
+            forward[y + 1][x] = (forward[y - 2][x - 1] * pow(transitions[y - 1][y + 2], Tln) +
+                    forward[y - 1][x - 1] * pow(transitions[y][y + 2], Tln) +
+                    forward[y][x - 1] * pow(transitions[y + 1][y + 2], Tln)) *
                     pow(emissions[y + 2][sequence[x - 1]], Tln);
-            forward[x][y + 2] = forward[x][y - 2] * pow(transitions[y - 1][y + 3], Tln) +
-                    forward[x][y - 1] * pow(transitions[y][y + 3], Tln) +
-                    forward[x][y] * pow(transitions[y + 1][y + 3], Tln);
+            forward[y + 2][x] = forward[y - 2][x] * pow(transitions[y - 1][y + 3], Tln) +
+                    forward[y - 1][x] * pow(transitions[y][y + 3], Tln) +
+                    forward[y][x] * pow(transitions[y + 1][y + 3], Tln);
         }
-        forward[x][lengthOfSeedAlignment * 3] = (forward[x - 1][lengthOfSeedAlignment * 3 - 2] *
+        forward[lengthOfSeedAlignment * 3][x] = (forward[lengthOfSeedAlignment * 3 - 2][x - 1] *
                 pow(transitions[lengthOfSeedAlignment * 3 - 1][lengthOfSeedAlignment * 3 + 1], Tln) +
-                forward[x - 1][lengthOfSeedAlignment * 3 - 1] *
+                forward[lengthOfSeedAlignment * 3 - 1][x - 1] *
                 pow(transitions[lengthOfSeedAlignment * 3][lengthOfSeedAlignment * 3 + 1], Tln) +
-                forward[x - 1][lengthOfSeedAlignment * 3] *
+                forward[lengthOfSeedAlignment * 3][x - 1] *
                 pow(transitions[lengthOfSeedAlignment  * 3 + 1][lengthOfSeedAlignment * 3 + 1], Tln)) *
                 pow(emissions[lengthOfSeedAlignment * 3 + 1][sequence[x - 1]], Tln);
     }
@@ -448,9 +448,9 @@ double  SignificanceEstimation::partitionFunction(std::string sequence, double T
         std::cout << std::endl;
     }
 
-    return forward[lengthOfSequence][lengthOfSeedAlignment * 3 - 2] +
-            forward[lengthOfSequence][lengthOfSeedAlignment * 3 - 1] +
-            forward[lengthOfSequence][lengthOfSeedAlignment * 3];
+    return forward[lengthOfSeedAlignment * 3 - 2][lengthOfSequence] +
+            forward[lengthOfSeedAlignment * 3 - 1][lengthOfSequence] +
+            forward[lengthOfSeedAlignment * 3][lengthOfSequence];
 }
 
 void SignificanceEstimation::averageEmissionsCalculation(double T) {
