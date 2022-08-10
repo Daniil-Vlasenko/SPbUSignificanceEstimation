@@ -34,8 +34,8 @@ public:
 
 class BackgroundModel {
 private:
-    std::map<char, double> emissions = {{'-', 1./6}, {'A', 1./6}, {'C', 1./6},
-                                        {'D', 1./6}, {'E', 1./6}, {'F', 1./6},};
+    std::map<char, double> emissions = {{'A', 1./5}, {'C', 1./5}, {'D', 1./5},
+                                        {'E', 1./5}, {'F', 1./5},};
 public:
     std::map<char, double> getEmissions();
     double probabilityOfString(std::string sequence);
@@ -104,7 +104,7 @@ public:
     // Calculation of average emissions for Z(T).
     void averageEmissionsCalculation(double T);
     // Calculation of Z(T) and transitionsForSample.
-    double ZCalculation(double T);
+    double ZCalculation(int lengthOfSequence, double T);
     // Calculation of emissionsForSample.
     void emissionsForSampleCalculation(double T);
     // Calculation of false positive rate.

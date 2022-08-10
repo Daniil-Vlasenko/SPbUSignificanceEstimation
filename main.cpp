@@ -23,7 +23,12 @@ int main() {
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl << significanceEstimation.partitionFunction("ACFEFFDF", T) << std::endl;
+    BackgroundModel backgroundModel = significanceEstimation.getBackgroundModel();
+    std::cout << std::endl << significanceEstimation.partitionFunction("ADDEFAAADF", T) << std::endl;
+    std::cout << std::endl << backgroundModel.probabilityOfString("ADDEFAAADF") << std::endl;
+    std::cout << std::endl << significanceEstimation.ZCalculation(10, T) << std::endl;
+
+
 //    std::cout << std::endl << significanceEstimation.ZCalculation(T) << std::endl;
 //    significanceEstimation.emissionsForSampleCalculation(T);
 //    Sample sample = significanceEstimation.getSample();
