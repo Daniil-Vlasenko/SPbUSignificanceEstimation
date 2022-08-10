@@ -261,74 +261,99 @@ char Sample::sampleEmission(int state, const std::vector<std::map<char, double>>
     }
 }
 
-std::string Sample::sampleSequence(Alignment alignment, const std::vector<std::map<char, double>> &emissionsForSample,
+std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignment,
+                                   const std::vector<std::map<char, double>> &emissionsForSample,
                                    const std::vector<std::vector<double>> &transitionsForSample) {
-    int lengthOfAlignment = alignment.getLengthOfAlignment(),
-        lengthOfSeedAlignment = alignment.getLengthOfSeedAlignment();
     std::string sequence;
-    int tmpState = lengthOfSeedAlignment * 3 + 2;
-    // Case of the end of the path is similar to the case of match/mismatch.
-    for(int x = lengthOfAlignment; x > 0; --x) {
-        if(x == 5)
-            std::cout << tmpState % 3;
-        double sum = 0, normalisation = 0, a = distribution(generator);
-        if(tmpState < 4) {
-            tmpState = 1;
-            sequence += sampleEmission(tmpState, emissionsForSample);
-            continue;
-        }
-        switch(tmpState % 3) {
+    int x = lengthOfSequence + 1, y = lengthOfSeedAlignment * 3; // Case of the End equal to the Insertion stat with these x and y.
+
+    // Case of 3 - lengthOfSequence+1 columns and 4 - lengthOfSeedAlignment*3 strings.
+    while(x > 1 && y > 2) {
+        double a = distribution(generator), sum = 0, normalisation;
+        switch(y % 3) {
             case 0:
-                normalisation = transitionsForSample[tmpState - 2][x - 1] +
-                        transitionsForSample[tmpState - 3][x - 1] +
-                        transitionsForSample[tmpState - 4][x - 1];
-                if((sum += transitionsForSample[tmpState - 2][x - 1] / normalisation) >= a) {
-                    tmpState -= 2;
-                    sequence += sampleEmission(tmpState, emissionsForSample);
+                normalisation = transitionsForSample[y - 2][x - 1] + transitionsForSample[y - 1][x - 1] +
+                        transitionsForSample[y][x - 1];
+                if((sum += transitionsForSample[y - 2][x - 1] / normalisation) > a) {
+                    x -= 1; y -= 2;
+                    sequence += sampleEmission(y + 1, emissionsForSample);
                 }
-                else if((sum += transitionsForSample[tmpState - 3][x - 1] / normalisation) >= a) {
-                    tmpState -= 3;
-                    sequence += '-';
+                else if((sum += transitionsForSample[y - 1][x - 1] / normalisation) > a) {
+                    x -= 1; y -= 1;
                 }
                 else {
-                    tmpState -= 4;
-                    sequence += sampleEmission(tmpState, emissionsForSample);
+                    x -= 1;
+                    sequence += sampleEmission(y + 1, emissionsForSample);
                 }
                 break;
             case 1:
-                normalisation = transitionsForSample[tmpState][x - 1] +
-                                transitionsForSample[tmpState - 1][x - 1] +
-                                transitionsForSample[tmpState - 2][x - 1];
-                if((sum += transitionsForSample[tmpState][x - 1] / normalisation) >= a) {
-                    sequence += sampleEmission(tmpState, emissionsForSample);
+                normalisation = transitionsForSample[y - 3][x - 1] + transitionsForSample[y - 2][x - 1] +
+                        transitionsForSample[y - 1][x - 1];
+                if((sum += transitionsForSample[y - 3][x - 1] / normalisation) > a) {
+                    x -= 1; y -= 3;
+                    sequence += sampleEmission(y + 1, emissionsForSample);
                 }
-                else if((sum += transitionsForSample[tmpState - 1][x - 1] / normalisation) >= a) {
-                    tmpState -= 1;
-                    sequence += '-';
+                else if((sum += transitionsForSample[y - 2][x - 1] / normalisation) > a) {
+                    x -= 1; y -= 2;
                 }
                 else {
-                    tmpState -= 2;
-                    sequence += sampleEmission(tmpState, emissionsForSample);
+                    x -= 1; y -= 1;
+                    sequence += sampleEmission(y + 1, emissionsForSample);
                 }
                 break;
             default:
-                normalisation = transitionsForSample[tmpState - 1][x - 1] +
-                                transitionsForSample[tmpState - 2][x - 1] +
-                                transitionsForSample[tmpState - 3][x - 1];
-                if((sum += transitionsForSample[tmpState - 1][x - 1] / normalisation) >= a) {
-                    tmpState -= 1;
-                    sequence += sampleEmission(tmpState, emissionsForSample);
+                normalisation = transitionsForSample[y - 4][x] + transitionsForSample[y - 3][x] +
+                        transitionsForSample[y - 2][x];
+                if((sum += transitionsForSample[y - 4][x] / normalisation) > a) {
+                    y -= 4;
+                    sequence += sampleEmission(y + 1, emissionsForSample);
                 }
-                else if((sum += transitionsForSample[tmpState - 2][x - 1] / normalisation) >= a) {
-                    tmpState -= 2;
-                    sequence += '-';
+                else if((sum += transitionsForSample[y - 3][x] / normalisation) > a) {
+                    y -= 3;
                 }
                 else {
-                    tmpState -= 3;
-                    sequence += sampleEmission(tmpState, emissionsForSample);
+                    y -= 2;
+                    sequence += sampleEmission(y + 1, emissionsForSample);
                 }
         }
     }
+    // If we get to Deletion state in the second column, then it must be one more emission above.
+    // Case of the second column.
+    while(y > 2 && y % 3 == 2) {
+        double a = distribution(generator), sum = 0, normalisation = transitionsForSample[y - 4][x] +
+                transitionsForSample[y - 3][x] + transitionsForSample[y - 2][x];
+        if((sum += transitionsForSample[y - 4][x] / normalisation) > a) {
+            y -= 4;
+            sequence += sampleEmission(y + 1, emissionsForSample);
+        }
+        else if((sum += transitionsForSample[y - 3][x] / normalisation) > a) {
+            y -= 3;
+        }
+        else {
+            y -= 2;
+            sequence += sampleEmission(y + 1, emissionsForSample);
+        }
+    }
+    if(y == 2 && x == 1)
+        sequence += sampleEmission(1, emissionsForSample);
+    // Case of the first three strings.
+    while(y < 3 && x > 1) {
+        double a = distribution(generator), sum = 0, normalisation;
+        switch(y % 3) {
+            case 0:
+                x -= 1;
+                sequence += sampleEmission(y + 1, emissionsForSample);
+                break;
+            case 1:
+                x -= 1; y -= 1;
+                sequence += sampleEmission(y + 1, emissionsForSample);
+                break;
+            default:
+                y -= 1;
+                sequence += sampleEmission(y + 1, emissionsForSample);
+        }
+    }
+
 
     std::reverse(sequence.begin(), sequence.end());
     return sequence;
@@ -343,7 +368,7 @@ std::string Sample::sampleSequences(int numberOfSequences, Alignment alignment,
 
     std::string tmpString;
     for(int i = 0; i < numberOfSequences; ++i) {
-        tmpString = sampleSequence(alignment, emissionsForSample, transitionsForSample);
+//        tmpString = sampleSequence(alignment, emissionsForSample, transitionsForSample);
         file << tmpString << std::endl;
 //        std::cout << tmpString << std::endl;
     }

@@ -73,7 +73,8 @@ public:
     int getNumberOfSequences();
     // Sample Emission for state(I, M, D).
     char sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample);
-    std::string sampleSequence(Alignment alignment, const std::vector<std::map<char, double>> &emissionsForSample,
+    std::string sampleSequence(int lengthOfSequence, int lengthOfSeedAlignment,
+                               const std::vector<std::map<char, double>> &emissionsForSample,
                                const std::vector<std::vector<double>> &transitionsForSample);
     std::string sampleSequences(int numberOfSequences, Alignment alignment,
                                 const std::vector<std::map<char, double>> &emissionsForSample,
