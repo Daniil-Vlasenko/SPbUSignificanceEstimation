@@ -76,7 +76,7 @@ public:
     std::string sampleSequence(int lengthOfSequence, int lengthOfSeedAlignment,
                                const std::vector<std::map<char, double>> &emissionsForSample,
                                const std::vector<std::vector<double>> &transitionsForSample);
-    std::string sampleSequences(int numberOfSequences, Alignment alignment,
+    std::string sampleSequences(int numberOfSequences, int lengthOfSequence, int lengthOfSeedAlignment,
                                 const std::vector<std::map<char, double>> &emissionsForSample,
                                 const std::vector<std::vector<double>> &transitionsForSample);
 

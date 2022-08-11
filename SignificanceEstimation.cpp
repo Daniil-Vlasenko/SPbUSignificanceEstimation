@@ -268,7 +268,7 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
     int x = lengthOfSequence + 1, y = lengthOfSeedAlignment * 3; // Case of the End equal to the Insertion stat with these x and y.
 
     // Case of 3 - lengthOfSequence+1 columns and 4 - lengthOfSeedAlignment*3 strings.
-    while(x > 1 && y > 2) {
+    while(y > 2 && x > 1) {
         double a = distribution(generator), sum = 0, normalisation;
         switch(y % 3) {
             case 0:
@@ -334,11 +334,11 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
             sequence += sampleEmission(y + 1, emissionsForSample);
         }
     }
-    if(y == 2 && x == 1)
+    if(y == 2 && x == 1) {
         sequence += sampleEmission(1, emissionsForSample);
+    }
     // Case of the first three strings.
     while(y < 3 && x > 1) {
-        double a = distribution(generator), sum = 0, normalisation;
         switch(y % 3) {
             case 0:
                 x -= 1;
@@ -354,23 +354,22 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
         }
     }
 
-
     std::reverse(sequence.begin(), sequence.end());
     return sequence;
 }
 
-std::string Sample::sampleSequences(int numberOfSequences, Alignment alignment,
-                            const std::vector<std::map<char, double>> &emissionsForSample,
-                            const std::vector<std::vector<double>> &transitionsForSample) {
+std::string Sample::sampleSequences(int numberOfSequences, int lengthOfSequence, int lengthOfSeedAlignment,
+                                    const std::vector<std::map<char, double>> &emissionsForSample,
+                                    const std::vector<std::vector<double>> &transitionsForSample) {
     std::ofstream file("../" + sampleFileName);
     assert(file.is_open());
     this->numberOfSequences = numberOfSequences;
 
     std::string tmpString;
     for(int i = 0; i < numberOfSequences; ++i) {
-//        tmpString = sampleSequence(alignment, emissionsForSample, transitionsForSample);
+        tmpString = sampleSequence(lengthOfSequence, lengthOfSeedAlignment, emissionsForSample, transitionsForSample);
         file << tmpString << std::endl;
-//        std::cout << tmpString << std::endl;
+        std::cout << tmpString << std::endl;
     }
 
     file.close();
@@ -515,7 +514,7 @@ double SignificanceEstimation::ZCalculation(int lengthOfSequence, double T) {
     // Case of the second column.
     transitionsForSample[0][1] = pow(transitions[0][1], Tln) * averageEmissions[1];
     transitionsForSample[1][1] = pow(transitions[0][2], Tln) * averageEmissions[2];
-    transitionsForSample[2][1] = pow(transitions[1][3], Tln);
+    transitionsForSample[2][1] = transitionsForSample[0][1] * pow(transitions[1][3], Tln);
     for(int y = 3; y < lengthOfSeedAlignment * 3; y += 3) {
         transitionsForSample[y][1] = transitionsForSample[y - 1][0] * pow(transitions[y][y + 1], Tln) *
                 averageEmissions[y + 1];
