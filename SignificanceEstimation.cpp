@@ -369,7 +369,7 @@ void Sample::sampleSequences(int numberOfSequences, int lengthOfSequence, int le
     for(int i = 0; i < numberOfSequences; ++i) {
         tmpString = sampleSequence(lengthOfSequence, lengthOfSeedAlignment, emissionsForSample, transitionsForSample);
         file << tmpString << std::endl;
-        std::cout << tmpString << std::endl;
+//        std::cout << tmpString << std::endl;
     }
 
     file.close();
