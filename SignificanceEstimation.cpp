@@ -358,7 +358,7 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
     return sequence;
 }
 
-std::string Sample::sampleSequences(int numberOfSequences, int lengthOfSequence, int lengthOfSeedAlignment,
+void Sample::sampleSequences(int numberOfSequences, int lengthOfSequence, int lengthOfSeedAlignment,
                                     const std::vector<std::map<char, double>> &emissionsForSample,
                                     const std::vector<std::vector<double>> &transitionsForSample) {
     std::ofstream file("../" + sampleFileName);
@@ -593,17 +593,17 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
 //    }
 }
 
-double SignificanceEstimation::fprCalculation(double threshold, double Z) {
+double SignificanceEstimation::fprCalculation(double threshold, double Z, double T) {
     std::ifstream file("../" + sample.getSampleFileName());
     assert(file.is_open());
 
     std::string tmpString;
     int numberOfSequences = sample.getNumberOfSequences();
 
-    double fpr = 0, tmp;
+    double fpr = 0;
     for(int i = 0; i < numberOfSequences; ++i) {
         file >> tmpString;
-        fpr += (tmp = partitionFunction(tmpString, 1)) >= threshold ? tmp : 0;
+        fpr += partitionFunction(tmpString, 1) >= threshold ? 1 / partitionFunction(tmpString, T) : 0;
     }
     fpr *= Z / numberOfSequences;
 

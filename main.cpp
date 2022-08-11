@@ -2,9 +2,10 @@
 
 
 int main() {
-    std::cout.setf(std::ios::fixed);
+//    std::cout.setf(std::ios::fixed);
+//    std::cout.precision(10);
     double T = 1;
-    std::cout.precision(10);
+    int lengthOfSequence = 10, numberOfSequences = 1000;
     SignificanceEstimation significanceEstimation("alignmentFile.txt", "sampleFile.txt",
                                                   0.4, 0.005);
     std::vector<std::vector<double>> transitions = significanceEstimation.getPhmm().getTransitions();
@@ -26,25 +27,19 @@ int main() {
 //    BackgroundModel backgroundModel = significanceEstimation.getBackgroundModel();
 //    std::cout << std::endl << significanceEstimation.partitionFunction("ADDEFAAADF", T) << std::endl;
 //    std::cout << std::endl << backgroundModel.probabilityOfString("ADDEFAAADF") << std::endl;
-    std::cout << std::endl << significanceEstimation.ZCalculation(10, T) << std::endl;
+    double Z = significanceEstimation.ZCalculation(lengthOfSequence, T);
     significanceEstimation.emissionsForSampleCalculation(T);
-    Sample sample = significanceEstimation.getSample();
+    Sample &sample = significanceEstimation.getSample();
+    Alignment alignment = significanceEstimation.getAlignment();
     std::vector<std::vector<double>> transitionsForSample = significanceEstimation.getTransitionsForSample();
     std::vector<std::map<char, double>> emissionsForSample = significanceEstimation.getEmissionsForSample();
-    sample.sampleEmission(2, emissionsForSample);
-    sample.sampleSequences(10, 10, 8,
+    sample.sampleSequences(numberOfSequences, lengthOfSequence, alignment.getLengthOfSeedAlignment(),
                            emissionsForSample, transitionsForSample);
 
 
-//    std::cout << std::endl << significanceEstimation.ZCalculation(T) << std::endl;
-//    significanceEstimation.emissionsForSampleCalculation(T);
-//    Sample sample = significanceEstimation.getSample();
-//    Alignment alignment = significanceEstimation.getAlignment();
-//    std::vector<std::map<char, double>> emissionsForSample = significanceEstimation.getEmissionsForSample();
-//    std::vector<std::vector<double>> transitionsForSample = significanceEstimation.getTransitionsForSample();
-//    for(int i = 0; i < 80; ++i) {
-//        sample.sampleSequence(alignment, emissionsForSample, transitionsForSample);
-//    }
+    std::cout << significanceEstimation.fprCalculation(0.000000001, Z, T);
+
+
 
 
     return 0;

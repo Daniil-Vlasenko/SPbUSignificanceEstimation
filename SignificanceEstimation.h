@@ -76,7 +76,7 @@ public:
     std::string sampleSequence(int lengthOfSequence, int lengthOfSeedAlignment,
                                const std::vector<std::map<char, double>> &emissionsForSample,
                                const std::vector<std::vector<double>> &transitionsForSample);
-    std::string sampleSequences(int numberOfSequences, int lengthOfSequence, int lengthOfSeedAlignment,
+    void sampleSequences(int numberOfSequences, int lengthOfSequence, int lengthOfSeedAlignment,
                                 const std::vector<std::map<char, double>> &emissionsForSample,
                                 const std::vector<std::vector<double>> &transitionsForSample);
 
@@ -109,6 +109,6 @@ public:
     // Calculation of emissionsForSample.
     void emissionsForSampleCalculation(double T);
     // Calculation of false positive rate.
-    double fprCalculation(double threshold, double Z);
+    double fprCalculation(double threshold, double Z, double T);
 
 };
