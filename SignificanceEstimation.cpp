@@ -26,7 +26,7 @@ Alignment::Alignment(std::string alignmentFileName, double threshold) :
         file >> tmpString;
         ++numberOfStrings;
         for(int i = 0; i < lengthOfAlignment; ++i)
-            countOfGaps[i] = tmpString[i] == '-' ? countOfGaps[i] + 1 : countOfGaps[i];
+            countOfGaps[i] += tmpString[i] == '-' ? 1 : 0;
 
     } while(!file.eof());
     lengthOfSeedAlignment = 0;
@@ -369,7 +369,7 @@ void Sample::sampleSequences(int numberOfSequences, int lengthOfSequence, int le
     for(int i = 0; i < numberOfSequences; ++i) {
         tmpString = sampleSequence(lengthOfSequence, lengthOfSeedAlignment, emissionsForSample, transitionsForSample);
         file << tmpString << std::endl;
-//        std::cout << tmpString << std::endl;
+//        std::cout << tmpString[0];
     }
 
     file.close();
@@ -422,7 +422,7 @@ double  SignificanceEstimation::partitionFunction(std::string sequence, double T
     // Case of the second column.
     forward[0][1] = pow(transitions[0][1], Tln) * pow(emissions[1][sequence[0]], Tln);
     forward[1][1] = pow(transitions[0][2], Tln) * pow(emissions[2][sequence[0]], Tln);
-    forward[2][1] = pow(transitions[1][3], Tln);
+    forward[2][1] = forward[0][1] * pow(transitions[1][3], Tln);
     for(int y = 3; y < lengthOfSeedAlignment * 3; y += 3) {
         forward[y][1] = forward[y - 1][0] * pow(transitions[y][y + 1], Tln) *
                 pow(emissions[y + 1][sequence[0]], Tln);
