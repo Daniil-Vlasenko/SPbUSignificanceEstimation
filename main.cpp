@@ -23,13 +23,10 @@ int main() {
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl << std::endl;
 
-
-
-    std::cout << significanceEstimation.partitionFunction("AFDEFADADC", T) << std::endl << std::endl;
-    std::cout << significanceEstimation.ZCalculation(10, T);
-
+    std::cout << std::endl << significanceEstimation.partitionFunction("AFDEFADADC", T) << std::endl << std::endl;
+    std::cout << significanceEstimation.ZCalculation(10, T) << std::endl << std::endl;
+    significanceEstimation.emissionsForSampleCalculation(2);
 //    double Z = significanceEstimation.ZCalculation(lengthOfSequence, T);
 //    significanceEstimation.emissionsForSampleCalculation(T);
 //    Sample &sample = significanceEstimation.getSample();

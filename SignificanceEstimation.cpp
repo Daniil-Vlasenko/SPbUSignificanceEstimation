@@ -253,9 +253,11 @@ int Sample::getNumberOfSequences() {
 
 char Sample::sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample) {
     assert(state % 3 != 0);
-    double a = distribution(generator), sum = 0;
+    double a = distribution(generator), sum = 0,
+        normalisation = emissionsForSample[state].at('A') + emissionsForSample[state].at('C') +
+        emissionsForSample[state].at('D') + emissionsForSample[state].at('E') + emissionsForSample[state].at('F');
     for(auto pair: emissionsForSample[state]) {
-        sum += pair.second;
+        sum += pair.second / normalisation;
         if(sum >= a)
             return pair.first;
     }
@@ -556,12 +558,12 @@ double SignificanceEstimation::ZCalculation(int lengthOfSequence, double T) {
                 averageEmissions[lengthOfSeedAlignment * 3 + 1];
     }
 
-//    for(auto f: transitionsForSample) {
-//        for(auto inf: f){
-//            std::cout << inf << ' ';
-//        }
-//        std::cout << std::endl;
-//    }
+    for(auto f: transitionsForSample) {
+        for(auto inf: f){
+            std::cout << inf << ' ';
+        }
+        std::cout << std::endl;
+    }
 
     return transitionsForSample[lengthOfSeedAlignment * 3 - 2][lengthOfSequence] +
            transitionsForSample[lengthOfSeedAlignment * 3 - 1][lengthOfSequence] +
@@ -585,12 +587,12 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
         emissionsForSample[i]['F'] = emissionsBM['F'] * pow(emissions[i]['F'], Tln) / averageEmissions[i];
     }
 
-//    for(auto f: emissionsForSample) {
-//        for(auto inf: f){
-//            std::cout << inf.second << ' ';
-//        }
-//        std::cout << std::endl;
-//    }
+    for(auto f: emissionsForSample) {
+        for(auto inf: f){
+            std::cout << inf.second << ' ';
+        }
+        std::cout << std::endl;
+    }
 }
 
 double SignificanceEstimation::fprCalculation(double threshold, double Z, double T) {
