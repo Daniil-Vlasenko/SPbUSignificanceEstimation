@@ -4,7 +4,7 @@
 int main() {
     std::cout.setf(std::ios::fixed);
     std::cout.precision(10);
-    double T = 1;
+    double T = 2;
     int lengthOfSequence = 10, numberOfSequences = 100;
     SignificanceEstimation significanceEstimation("alignmentFile.txt", "sampleFile.txt",
                                                   0.4, 0.005);
@@ -26,7 +26,12 @@ int main() {
 
     std::cout << std::endl << significanceEstimation.partitionFunction("AFDEFADADC", T) << std::endl << std::endl;
     std::cout << significanceEstimation.ZCalculation(10, T) << std::endl << std::endl;
-    significanceEstimation.emissionsForSampleCalculation(2);
+    significanceEstimation.emissionsForSampleCalculation(1);
+    Sample &sample = significanceEstimation.getSample();
+    std::vector<std::vector<double>> transitionsForSample = significanceEstimation.getTransitionsForSample();
+    std::vector<std::map<char, double>> emissionsForSample = significanceEstimation.getEmissionsForSample();
+    sample.sampleSequences(100, 10, 8, emissionsForSample, transitionsForSample);
+
 //    double Z = significanceEstimation.ZCalculation(lengthOfSequence, T);
 //    significanceEstimation.emissionsForSampleCalculation(T);
 //    Sample &sample = significanceEstimation.getSample();

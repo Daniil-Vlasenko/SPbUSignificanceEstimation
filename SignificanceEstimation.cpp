@@ -267,7 +267,7 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
                                    const std::vector<std::map<char, double>> &emissionsForSample,
                                    const std::vector<std::vector<double>> &transitionsForSample) {
     std::string sequence;
-    int x = lengthOfSequence + 1, y = lengthOfSeedAlignment * 3; // Case of the End equal to the Insertion stat with these x and y.
+    int x = lengthOfSequence + 1, y = lengthOfSeedAlignment * 3; // Case of the Termination state equal to the Insertion state with these x and y.
 
     // Case of 3 - lengthOfSequence+1 columns and 4 - lengthOfSeedAlignment*3 strings.
     while(y > 2 && x > 1) {
@@ -337,7 +337,8 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
         }
     }
     if(y == 2 && x == 1) {
-        sequence += sampleEmission(1, emissionsForSample);
+        y -= 2;
+        sequence += sampleEmission(y + 1, emissionsForSample);
     }
     // Case of the first three strings.
     while(y < 3 && x > 1) {
@@ -351,7 +352,7 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
                 sequence += sampleEmission(y + 1, emissionsForSample);
                 break;
             default:
-                y -= 1;
+                y -= 2;
                 sequence += sampleEmission(y + 1, emissionsForSample);
         }
     }
@@ -371,7 +372,7 @@ void Sample::sampleSequences(int numberOfSequences, int lengthOfSequence, int le
     for(int i = 0; i < numberOfSequences; ++i) {
         tmpString = sampleSequence(lengthOfSequence, lengthOfSeedAlignment, emissionsForSample, transitionsForSample);
         file << tmpString << std::endl;
-//        std::cout << tmpString[0];
+        std::cout << tmpString[0];
     }
 
     file.close();
