@@ -253,11 +253,11 @@ int Sample::getNumberOfSequences() {
 
 char Sample::sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample) {
     assert(state % 3 != 0);
-    double a = distribution(generator), sum = 0,
-        normalisation = emissionsForSample[state].at('A') + emissionsForSample[state].at('C') +
-        emissionsForSample[state].at('D') + emissionsForSample[state].at('E') + emissionsForSample[state].at('F');
+    double a = distribution(generator), sum = 0;
+//    if(state == 2)
+//        std::cout << std::endl << a << std::endl;
     for(auto pair: emissionsForSample[state]) {
-        sum += pair.second / normalisation;
+        sum += pair.second;
         if(sum >= a)
             return pair.first;
     }
@@ -279,13 +279,16 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
                 if((sum += transitionsForSample[y - 2][x - 1] / normalisation) > a) {
                     x -= 1; y -= 2;
                     sequence += sampleEmission(y + 1, emissionsForSample);
+//                    std::cout << y + 1 << ' ';
                 }
                 else if((sum += transitionsForSample[y - 1][x - 1] / normalisation) > a) {
                     x -= 1; y -= 1;
+//                    std::cout << y + 1 << ' ';
                 }
                 else {
                     x -= 1;
                     sequence += sampleEmission(y + 1, emissionsForSample);
+//                    std::cout << y + 1 << ' ';
                 }
                 break;
             case 1:
@@ -294,13 +297,16 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
                 if((sum += transitionsForSample[y - 3][x - 1] / normalisation) > a) {
                     x -= 1; y -= 3;
                     sequence += sampleEmission(y + 1, emissionsForSample);
+//                    std::cout << y + 1 << ' ';
                 }
                 else if((sum += transitionsForSample[y - 2][x - 1] / normalisation) > a) {
                     x -= 1; y -= 2;
+//                    std::cout << y + 1 << ' ';
                 }
                 else {
                     x -= 1; y -= 1;
                     sequence += sampleEmission(y + 1, emissionsForSample);
+//                    std::cout << y + 1 << ' ';
                 }
                 break;
             default:
@@ -309,13 +315,16 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
                 if((sum += transitionsForSample[y - 4][x] / normalisation) > a) {
                     y -= 4;
                     sequence += sampleEmission(y + 1, emissionsForSample);
+//                    std::cout << y + 1 << ' ';
                 }
                 else if((sum += transitionsForSample[y - 3][x] / normalisation) > a) {
                     y -= 3;
+//                    std::cout << y + 1 << ' ';
                 }
                 else {
                     y -= 2;
                     sequence += sampleEmission(y + 1, emissionsForSample);
+//                    std::cout << y + 1 << ' ';
                 }
         }
     }
@@ -327,18 +336,22 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
         if((sum += transitionsForSample[y - 4][x] / normalisation) > a) {
             y -= 4;
             sequence += sampleEmission(y + 1, emissionsForSample);
+//            std::cout << y + 1 << ' ';
         }
         else if((sum += transitionsForSample[y - 3][x] / normalisation) > a) {
             y -= 3;
+//            std::cout << y + 1 << ' ';
         }
         else {
             y -= 2;
             sequence += sampleEmission(y + 1, emissionsForSample);
+//            std::cout << y + 1 << ' ';
         }
     }
     if(y == 2 && x == 1) {
         y -= 2;
         sequence += sampleEmission(y + 1, emissionsForSample);
+//        std::cout << y + 1 << ' ';
     }
     // Case of the first three strings.
     while(y < 3 && x > 1) {
@@ -346,16 +359,20 @@ std::string Sample::sampleSequence(int lengthOfSequence, int lengthOfSeedAlignme
             case 0:
                 x -= 1;
                 sequence += sampleEmission(y + 1, emissionsForSample);
+//                std::cout << y + 1 << ' ';
                 break;
             case 1:
                 x -= 1; y -= 1;
                 sequence += sampleEmission(y + 1, emissionsForSample);
+//                std::cout << y + 1 << ' ';
                 break;
             default:
                 y -= 2;
                 sequence += sampleEmission(y + 1, emissionsForSample);
+//                std::cout << y + 1 << ' ';
         }
     }
+//    std::cout << std::endl;
 
     std::reverse(sequence.begin(), sequence.end());
     return sequence;
@@ -372,7 +389,7 @@ void Sample::sampleSequences(int numberOfSequences, int lengthOfSequence, int le
     for(int i = 0; i < numberOfSequences; ++i) {
         tmpString = sampleSequence(lengthOfSequence, lengthOfSeedAlignment, emissionsForSample, transitionsForSample);
         file << tmpString << std::endl;
-        std::cout << tmpString[0];
+//        std::cout << tmpString[0];
     }
 
     file.close();
@@ -467,12 +484,14 @@ double  SignificanceEstimation::partitionFunction(std::string sequence, double T
                 pow(emissions[lengthOfSeedAlignment * 3 + 1][sequence[x - 1]], Tln);
     }
 
+//    std::cout << "partitionFunction" << std::endl;
 //    for(auto f: forward) {
 //        for(auto inf: f){
 //            std::cout << inf << ' ';
 //        }
 //        std::cout << std::endl;
 //    }
+//    std::cout << std::endl;
 
     return forward[lengthOfSeedAlignment * 3 - 2][lengthOfSequence] +
             forward[lengthOfSeedAlignment * 3 - 1][lengthOfSequence] +
@@ -496,8 +515,10 @@ void SignificanceEstimation::averageEmissionsCalculation(double T) {
                 emissionsBM['F'] * pow(emissions[y]['F'], Tln);
     }
 
+//    std::cout << "averageEmissionsCalculation" << std::endl;
 //    for(auto inv: averageEmissions)
 //        std:: cout << inv << std::endl;
+//    std::cout << std::endl;
 }
 
 double SignificanceEstimation::ZCalculation(int lengthOfSequence, double T) {
@@ -559,12 +580,14 @@ double SignificanceEstimation::ZCalculation(int lengthOfSequence, double T) {
                 averageEmissions[lengthOfSeedAlignment * 3 + 1];
     }
 
-    for(auto f: transitionsForSample) {
-        for(auto inf: f){
-            std::cout << inf << ' ';
-        }
-        std::cout << std::endl;
-    }
+//    std::cout << "ZCalculation" << std::endl;
+//    for(auto f: transitionsForSample) {
+//        for(auto inf: f){
+//            std::cout << inf << ' ';
+//        }
+//        std::cout << std::endl;
+//    }
+//    std::cout << std::endl;
 
     return transitionsForSample[lengthOfSeedAlignment * 3 - 2][lengthOfSequence] +
            transitionsForSample[lengthOfSeedAlignment * 3 - 1][lengthOfSequence] +
@@ -588,12 +611,14 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
         emissionsForSample[i]['F'] = emissionsBM['F'] * pow(emissions[i]['F'], Tln) / averageEmissions[i];
     }
 
-    for(auto f: emissionsForSample) {
-        for(auto inf: f){
-            std::cout << inf.second << ' ';
-        }
-        std::cout << std::endl;
-    }
+//    std::cout << "emissionsForSampleCalculation" << std::endl;
+//    for(auto f: emissionsForSample) {
+//        for(auto inf: f){
+//            std::cout << inf.second << ' ';
+//        }
+//        std::cout << std::endl;
+//    }
+//    std::cout << std::endl;
 }
 
 double SignificanceEstimation::fprCalculation(double threshold, double Z, double T) {
