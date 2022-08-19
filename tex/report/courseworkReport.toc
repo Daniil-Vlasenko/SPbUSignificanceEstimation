@@ -1,0 +1,12 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Введение}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Обозначения}{3}{}%
+\contentsline {section}{\numberline {2}Проделанная работа}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Forward--Backward процедуры}{4}{}%
+\contentsline {subsubsection}{\numberline {2.1.1}Forward процедура}{4}{}%
+\contentsline {subsubsection}{\numberline {2.1.2}Backward процедура}{4}{}%
+\contentsline {subsection}{\numberline {2.2}Алгоритм Витерби}{5}{}%
+\contentsline {subsection}{\numberline {2.3}Алгоритм Баума"--~Велша}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}Начальные параметры алгоритма Баума"--~Велша}{6}{}%
+\contentsline {section}{\numberline {3}Дальнейшая работа}{8}{}%
+\contentsline {section}{\numberline {4}Литература}{8}{}%

@@ -110,5 +110,7 @@ public:
     void emissionsForSampleCalculation(double T);
     // Calculation of false positive rate.
     double fprCalculation(double threshold, double Z, double T);
+    // Calculation data for choice of temperature.
+    int temperatureChoice(int lengthOfSequence, double threshold);
 
 };

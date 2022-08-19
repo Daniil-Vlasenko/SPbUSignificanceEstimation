@@ -638,3 +638,33 @@ double SignificanceEstimation::fprCalculation(double threshold, double Z, double
     file.close();
     return fpr;
 }
+
+int SignificanceEstimation::temperatureChoice(int lengthOfSequence, double threshold) {
+    std::ofstream fileOutput("../temperatureChoice.txt");
+    int numberOfSequences = 20;
+    double resultT = -1;
+
+    // Sample scores for plot and find the first temperature for which >20% of sequences get threshold.
+    for(int T = 1; T < 501; ++T) {
+        double count = 0;
+        ZCalculation(lengthOfSequence, T);
+        emissionsForSampleCalculation(T);
+        sample.sampleSequences(numberOfSequences, lengthOfSequence, alignment.getLengthOfSeedAlignment(),
+                               emissionsForSample, transitionsForSample);
+        std::ifstream fileInput("../" + sample.getSampleFileName());
+        std::string tmpString;
+        for(int i = 0; i < numberOfSequences; ++i) {
+            fileInput >> tmpString;
+            double s = partitionFunction(tmpString, 1);
+            if(s >= threshold)
+                ++count;
+            fileOutput << T << ' ' << s << std::endl;
+        }
+        fileInput.close();
+        if(resultT == -1 && count / numberOfSequences >= 0.2 && count / numberOfSequences <= 0.6)
+            resultT = T;
+    }
+
+    fileOutput.close();
+    return resultT;
+}

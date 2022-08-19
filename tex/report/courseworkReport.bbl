@@ -1,0 +1,44 @@
+\begin{thebibliography}{1}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\selectlanguage{#1}\fi}
+\providecommand*{\href}[2]{{\small #2}}
+\providecommand*{\url}[1]{{\small #1}}
+\providecommand*{\BibUrl}[1]{\url{#1}}
+\providecommand*{\BibDOI}[1]{DOI: \href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
+\providecommand{\BibAnnote}[1]{}
+\providecommand*{\BibEmph}[1]{#1}
+\providecommand*{\BibEmphi}[1]{#1}
+\providecommand*{\BibEmphii}[1]{#1}
+\ProvideTextCommandDefault{\cyrdash}{\hbox to.8em{--\hss--}}
+\providecommand*{\BibDash}{\ifdim\lastskip>0pt\unskip\nobreak\hskip.2em\fi
+\cyrdash\hskip.2em\ignorespaces}
+
+\bibitem{Dugad96}
+\selectlanguageifdefined{english}
+A tutorial on Hidden Markov Models~: Rep.~/ Signal Processing and Artifcial
+  Neural Networks Laboratory Department of Electrical Engineering Indian
+  Institute of Technology~; Executor: Rakesh~Dugad, U.~B.~Desai~: 1996.
+
+\bibitem{Stamp21}
+\selectlanguageifdefined{english}
+\BibEmph{Stamp~Mark}. Introduction to Machine Learning with Applications in
+  Information Security~// A Revealing Introduction to Hidden Markov Models.
+  \BibDash
+\newblock Chapman and Hall, 2017.
+
+\bibitem{Jurafsky21}
+\selectlanguageifdefined{english}
+\BibEmph{Jurafsky~Daniel, Martin~James~H.} Speech and Language Processing.~//
+  Hidden Markov Models. \BibDash
+\newblock Prentice Hall, 2021.
+
+\bibitem{Rabiner89}
+\selectlanguageifdefined{english}
+\BibEmph{Rabiner~L.R.} A tutorial on hidden Markov models and selected
+  applications in speech recognition~// \BibEmphi{Proceedings of the IEEE}.
+  \BibDash
+\newblock 1989. \BibDash
+\newblock P.~257 -- 286.
+
+\end{thebibliography}
