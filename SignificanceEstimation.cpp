@@ -641,7 +641,7 @@ double SignificanceEstimation::fprCalculation(double threshold, double Z, double
 
 int SignificanceEstimation::temperatureChoice(int lengthOfSequence, double threshold) {
     std::ofstream fileOutput("../temperatureChoice.txt");
-    int numberOfSequences = 20;
+    int numberOfSequences = 50;
     double resultT = -1;
 
     // Sample scores for plot and find the first temperature for which >20% of sequences get threshold.
