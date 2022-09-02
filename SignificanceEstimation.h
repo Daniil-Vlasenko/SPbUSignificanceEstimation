@@ -67,19 +67,25 @@ private:
     std::string sampleFileName;
     int numberOfSequences;
 
+    // Recursive function that called in allSequencesGeneration
+    void recGeneratePrefix(std::string prefix, int lengthOfSequence, std::ofstream &file);
+
 public:
     Sample(std::string sampleFileName);
     std::string getSampleFileName();
     int getNumberOfSequences();
-    // Sample Emission for state(I, M, D).
+    // Sample an emission for state.
     char sampleEmission(int state, const std::vector<std::map<char, double>> &emissionsForSample);
+    // Sample a sequence.
     std::string sampleSequence(int lengthOfSequence, int lengthOfSeedAlignment,
                                const std::vector<std::map<char, double>> &emissionsForSample,
                                const std::vector<std::vector<double>> &transitionsForSample);
+    // Sample sequences.
     void sampleSequences(int numberOfSequences, int lengthOfSequence, int lengthOfSeedAlignment,
                                 const std::vector<std::map<char, double>> &emissionsForSample,
                                 const std::vector<std::vector<double>> &transitionsForSample);
-
+    // Listing of all possible sequences of the fixed length.
+    void allSequencesGeneration(int lengthOfSequences);
 };
 
 class SignificanceEstimation {
@@ -108,9 +114,10 @@ public:
     double ZCalculation(int lengthOfSequence, double T);
     // Calculation of emissionsForSample.
     void emissionsForSampleCalculation(double T);
-    // Calculation of false positive rate.
-    double fprCalculation(double threshold, double Z, double T);
+    // Estimation of false positive rate.
+    double fprEstimation(double threshold, double Z, double T);
     // Calculation data for choice of temperature.
     int temperatureChoice(int lengthOfSequence, double threshold);
-
+    // Calculation of false positive rate to check estimation.
+    double fprCalculation(double threshold);
 };

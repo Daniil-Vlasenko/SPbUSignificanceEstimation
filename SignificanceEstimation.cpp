@@ -395,6 +395,32 @@ void Sample::sampleSequences(int numberOfSequences, int lengthOfSequence, int le
     file.close();
 }
 
+void Sample::recGeneratePrefix(std::string prefix, int lengthOfSequence, std::ofstream &file) {
+    char set[] = {'A', 'C', 'D', 'E', 'F'};
+    int n = 5;
+
+    if (lengthOfSequence == 0) {
+        file << (prefix) << std::endl;
+        return;
+    }
+
+    for (int i = 0; i < n; i++) {
+        std::string newPrefix;
+        newPrefix = prefix + set[i];
+        recGeneratePrefix(newPrefix, lengthOfSequence - 1, file);
+    }
+}
+
+void Sample::allSequencesGeneration(int lengthOfSequences) {
+    std::ofstream file("../" + sampleFileName);
+    assert(file.is_open());
+
+    this->numberOfSequences = pow(5, lengthOfSequences);
+    recGeneratePrefix("", lengthOfSequences, file);
+
+    file.close();
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 SignificanceEstimation::SignificanceEstimation(std::string alignmentFileName, std::string sampleFileName,
                                                double threshold, double pseudocountValue) :
@@ -621,13 +647,12 @@ void SignificanceEstimation::emissionsForSampleCalculation(double T) {
 //    std::cout << std::endl;
 }
 
-double SignificanceEstimation::fprCalculation(double threshold, double Z, double T) {
+double SignificanceEstimation::fprEstimation(double threshold, double Z, double T) {
     std::ifstream file("../" + sample.getSampleFileName());
     assert(file.is_open());
 
     std::string tmpString;
     int numberOfSequences = sample.getNumberOfSequences();
-
     double fpr = 0;
     for(int i = 0; i < numberOfSequences; ++i) {
         file >> tmpString;
@@ -667,4 +692,20 @@ int SignificanceEstimation::temperatureChoice(int lengthOfSequence, double thres
 
     fileOutput.close();
     return resultT;
+}
+
+double SignificanceEstimation::fprCalculation(double threshold) {
+    std::ifstream file("../" + sample.getSampleFileName());
+    assert(file.is_open());
+
+    std::string tmpString;
+    int numberOfSequences = sample.getNumberOfSequences();
+    double fpr = 0;
+    for(int i = 0; i < numberOfSequences; ++i) {
+        file >> tmpString;
+        fpr += partitionFunction(tmpString, 1) >= threshold ? backgroundModel.probabilityOfString(tmpString) : 0;
+    }
+
+    file.close();
+    return fpr;
 }
