@@ -87,6 +87,12 @@ public:
                                 const std::vector<std::vector<double>> &transitionsForSample);
     // Listing of all possible sequences of the fixed length.
     void allSequencesGeneration(int lengthOfSequences);
+    // Sample an emission with regard to the background model.
+    char sampleEmissionB(BackgroundModel &backgroundModel);
+    // Sample a sequence with regard to the background model.
+    std::string sampleSequenceB(int lengthOfSequence, BackgroundModel &backgroundModel);
+    // Sample sequences with regard to the background model.
+    void sampleSequencesB(int numberOfSequences, int lengthOfSequence, BackgroundModel &backgroundModel);
 };
 
 class SignificanceEstimation {
@@ -122,5 +128,5 @@ public:
     // Analytical calculation of false positive rate.
     double fprCalculation(double threshold);
     // Calculation of confidence interval.
-    std::pair<double, double> confidenceIntervalCalculation(double threshold, double T, double significanceLevel);
+    std::pair<double, double> confidenceIntervalCalculation(double threshold,  double Z, double T, double significanceLevel);
 };

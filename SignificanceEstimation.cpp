@@ -421,6 +421,38 @@ void Sample::allSequencesGeneration(int lengthOfSequences) {
     file.close();
 }
 
+char Sample::sampleEmissionB(BackgroundModel &backgroundModel) {
+    double a = distribution(generator), sum = 0;
+    std::map<char, double> emissions = backgroundModel.getEmissions();
+    for(auto pair: emissions) {
+        sum += pair.second;
+        if(sum >= a)
+            return pair.first;
+    }
+}
+
+std::string Sample::sampleSequenceB(int lengthOfSequence, BackgroundModel &backgroundModel) {
+    std::string sequence;
+    for(int i = 0; i < lengthOfSequence; ++i) {
+        sequence += sampleEmissionB(backgroundModel);
+    }
+    return sequence;
+}
+
+void Sample::sampleSequencesB(int numberOfSequences, int lengthOfSequence, BackgroundModel &backgroundModel) {
+    std::ofstream file("../" + sampleFileName);
+    assert(file.is_open());
+    this->numberOfSequences = numberOfSequences;
+
+    std::string tmpString;
+    for(int i = 0; i < numberOfSequences; ++i) {
+        tmpString = sampleSequenceB(lengthOfSequence, backgroundModel);
+        file << tmpString << std::endl;
+    }
+
+    file.close();
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 SignificanceEstimation::SignificanceEstimation(std::string alignmentFileName, std::string sampleFileName,
                                                double threshold, double pseudocountValue) :
@@ -714,7 +746,7 @@ double SignificanceEstimation::fprCalculation(double threshold) {
     return fpr;
 }
 
-std::pair<double, double> SignificanceEstimation::confidenceIntervalCalculation(double threshold,
+std::pair<double, double> SignificanceEstimation::confidenceIntervalCalculation(double threshold, double Z,
                                                                                 double T, double significanceLevel) {
     std::ifstream file("../" + sample.getSampleFileName());
     assert(file.is_open());
@@ -724,7 +756,8 @@ std::pair<double, double> SignificanceEstimation::confidenceIntervalCalculation(
     double meanTheta = 0;
     for(int i = 0; i < numberOfSequences; ++i) {
         file >> tmpString;
-        meanTheta += partitionFunction(tmpString, 1) >= threshold ? 1 : 0;
+        meanTheta += partitionFunction(tmpString, 1) >= threshold ?
+                Z / partitionFunction(tmpString, T) : 0;
     }
     meanTheta /= numberOfSequences;
     std::cout << "meanTheta in confidenceIntervalCalculation: " << meanTheta << std::endl;
