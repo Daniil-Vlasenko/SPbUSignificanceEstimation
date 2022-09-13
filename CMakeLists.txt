@@ -5,6 +5,5 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
 
-add_executable(SPBUSignificanceEstimation
-        SignificanceEstimation.cpp
-        SignificanceEstimation.h main.cpp)
+add_executable(SPBUSignificanceEstimation SignificanceEstimation.cpp SignificanceEstimation.h
+        probdist.cpp probdist.h main.cpp)

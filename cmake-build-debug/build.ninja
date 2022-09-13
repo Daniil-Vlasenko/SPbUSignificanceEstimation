@@ -56,6 +56,13 @@ build CMakeFiles/SPBUSignificanceEstimation.dir/SignificanceEstimation.cpp.o: CX
   OBJECT_DIR = CMakeFiles/SPBUSignificanceEstimation.dir
   OBJECT_FILE_DIR = CMakeFiles/SPBUSignificanceEstimation.dir
 
+build CMakeFiles/SPBUSignificanceEstimation.dir/probdist.cpp.o: CXX_COMPILER__SPBUSignificanceEstimation_Debug /home/daniil/programming/cpp/SPBUSignificanceEstimation/probdist.cpp || cmake_object_order_depends_target_SPBUSignificanceEstimation
+  DEP_FILE = CMakeFiles/SPBUSignificanceEstimation.dir/probdist.cpp.o.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -I/home/daniil/programming/cpp/SPBUSignificanceEstimation/.
+  OBJECT_DIR = CMakeFiles/SPBUSignificanceEstimation.dir
+  OBJECT_FILE_DIR = CMakeFiles/SPBUSignificanceEstimation.dir
+
 build CMakeFiles/SPBUSignificanceEstimation.dir/main.cpp.o: CXX_COMPILER__SPBUSignificanceEstimation_Debug /home/daniil/programming/cpp/SPBUSignificanceEstimation/main.cpp || cmake_object_order_depends_target_SPBUSignificanceEstimation
   DEP_FILE = CMakeFiles/SPBUSignificanceEstimation.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++14
@@ -71,7 +78,7 @@ build CMakeFiles/SPBUSignificanceEstimation.dir/main.cpp.o: CXX_COMPILER__SPBUSi
 #############################################
 # Link the executable SPBUSignificanceEstimation
 
-build SPBUSignificanceEstimation: CXX_EXECUTABLE_LINKER__SPBUSignificanceEstimation_Debug CMakeFiles/SPBUSignificanceEstimation.dir/SignificanceEstimation.cpp.o CMakeFiles/SPBUSignificanceEstimation.dir/main.cpp.o
+build SPBUSignificanceEstimation: CXX_EXECUTABLE_LINKER__SPBUSignificanceEstimation_Debug CMakeFiles/SPBUSignificanceEstimation.dir/SignificanceEstimation.cpp.o CMakeFiles/SPBUSignificanceEstimation.dir/probdist.cpp.o CMakeFiles/SPBUSignificanceEstimation.dir/main.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/SPBUSignificanceEstimation.dir
   POST_BUILD = :

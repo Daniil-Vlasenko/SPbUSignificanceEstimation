@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include<iomanip>
+#include <iomanip>
 #include <map>
 #include <vector>
 #include <string>
@@ -10,6 +10,7 @@
 #include <chrono>
 #include <random>
 #include <algorithm>
+#include "probdist.h"
 
 
 class Alignment {
@@ -118,6 +119,8 @@ public:
     double fprEstimation(double threshold, double Z, double T);
     // Calculation data for choice of temperature.
     int temperatureChoice(int lengthOfSequence, double threshold);
-    // Calculation of false positive rate to check estimation.
+    // Analytical calculation of false positive rate.
     double fprCalculation(double threshold);
+    // Calculation of confidence interval.
+    std::pair<double, double> confidenceIntervalCalculation(double threshold, double T, double significanceLevel);
 };

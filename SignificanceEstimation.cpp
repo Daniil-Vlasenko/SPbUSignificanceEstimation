@@ -653,12 +653,14 @@ double SignificanceEstimation::fprEstimation(double threshold, double Z, double 
 
     std::string tmpString;
     int numberOfSequences = sample.getNumberOfSequences();
-    double fpr = 0;
+    double fpr = 0, fprTest = 0;
     for(int i = 0; i < numberOfSequences; ++i) {
         file >> tmpString;
         fpr += partitionFunction(tmpString, 1) >= threshold ? 1 / partitionFunction(tmpString, T) : 0;
+        fprTest += partitionFunction(tmpString, 1) >= threshold ? 1 : 0;
     }
     fpr *= Z / numberOfSequences;
+    std::cout << "meanTheta in fprEstimation: " << fprTest / numberOfSequences << std::endl;
 
     file.close();
     return fpr;
@@ -700,12 +702,43 @@ double SignificanceEstimation::fprCalculation(double threshold) {
 
     std::string tmpString;
     int numberOfSequences = sample.getNumberOfSequences();
-    double fpr = 0;
+    double fpr = 0, fprTest = 0;
     for(int i = 0; i < numberOfSequences; ++i) {
         file >> tmpString;
         fpr += partitionFunction(tmpString, 1) >= threshold ? backgroundModel.probabilityOfString(tmpString) : 0;
+        fprTest += partitionFunction(tmpString, 1) >= threshold ? 1 : 0;
     }
+    std::cout << "meanTheta in fprCalculation: " << fprTest / numberOfSequences << std::endl;
 
     file.close();
     return fpr;
+}
+
+std::pair<double, double> SignificanceEstimation::confidenceIntervalCalculation(double threshold,
+                                                                                double T, double significanceLevel) {
+    std::ifstream file("../" + sample.getSampleFileName());
+    assert(file.is_open());
+
+    std::string tmpString;
+    int numberOfSequences = sample.getNumberOfSequences();
+    double meanTheta = 0;
+    for(int i = 0; i < numberOfSequences; ++i) {
+        file >> tmpString;
+        meanTheta += partitionFunction(tmpString, 1) >= threshold ? 1 : 0;
+    }
+    meanTheta /= numberOfSequences;
+    std::cout << "meanTheta in confidenceIntervalCalculation: " << meanTheta << std::endl;
+
+    std::pair<double, double> result;
+    Probdist distribution;
+    double t = distribution.xNormal((1 - significanceLevel) / 2);
+    result.first = (meanTheta * numberOfSequences + t * t / 2 -
+            sqrt(t * t * (t * t / 4 + meanTheta * numberOfSequences - meanTheta * meanTheta * numberOfSequences))) /
+            (numberOfSequences + meanTheta * meanTheta);
+    result.second = (meanTheta * numberOfSequences + t * t / 2 +
+            sqrt(t * t * (t * t / 4 + meanTheta * numberOfSequences - meanTheta * meanTheta * numberOfSequences))) /
+            (numberOfSequences + meanTheta * meanTheta);
+
+    file.close();
+    return result;
 }

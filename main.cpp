@@ -4,10 +4,11 @@
 int main() {
 //    std::cout.setf(std::ios::fixed);
 //    std::cout.precision(10);
-    double T = 4, threshold = pow(10, -12);
-    int lengthOfSequence = 8, numberOfSequences = 1000;
+    double T = 1, threshold = pow(10, -3), significanceLevel = 0.9;
+    int lengthOfSequence = 8, numberOfSequences = 10000;
     SignificanceEstimation significanceEstimation("alignmentFile.txt", "sampleFile.txt",
                                                   0.4, 0.01);
+
 
     double Z = significanceEstimation.ZCalculation(lengthOfSequence, T);
     significanceEstimation.emissionsForSampleCalculation(T);
@@ -15,21 +16,17 @@ int main() {
     Alignment alignment = significanceEstimation.getAlignment();
     std::vector<std::vector<double>> transitionsForSample = significanceEstimation.getTransitionsForSample();
     std::vector<std::map<char, double>> emissionsForSample = significanceEstimation.getEmissionsForSample();
-
+    sample.sampleSequences(numberOfSequences, lengthOfSequence, alignment.getLengthOfSeedAlignment(),
+                           emissionsForSample, transitionsForSample);
+    std::pair<double, double> confidenceInterval =
+            significanceEstimation.confidenceIntervalCalculation(threshold, T, significanceLevel);
+    std::cout << confidenceInterval.first << " " << confidenceInterval.second << std::endl;
+    double fpr1 = significanceEstimation.fprEstimation(threshold, Z, T);
     sample.allSequencesGeneration(8);
-    std::cout << "fpr: " << significanceEstimation.fprCalculation(threshold) << std::endl;
+    double fpr2 = significanceEstimation.fprCalculation(threshold);
 
 
-//    std::cout << "T: " << significanceEstimation.temperatureChoice(lengthOfSequence, threshold) << std::endl;
-    int count = 10;
-    double sumfpr = 0, tmp1;
-    for(int i = 0; i < count; ++i) {
-        sample.sampleSequences(numberOfSequences, lengthOfSequence, alignment.getLengthOfSeedAlignment(),
-                               emissionsForSample, transitionsForSample);
-        std::cout << "fprEstimation: " << (tmp1 = significanceEstimation.fprEstimation(threshold, Z, T)) << std::endl;
-        sumfpr += tmp1;
-    }
-    std::cout << std::endl << "average fprEstimation: " << sumfpr / count << std::endl;
+//    meanTheta in fprCalculation: 0.00013312
 
 
 
