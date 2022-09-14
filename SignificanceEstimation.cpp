@@ -442,8 +442,8 @@ std::string Sample::sampleSequenceB(int lengthOfSequence, BackgroundModel &backg
 void Sample::sampleSequencesB(int numberOfSequences, int lengthOfSequence, BackgroundModel &backgroundModel) {
     std::ofstream file("../" + sampleFileName);
     assert(file.is_open());
-    this->numberOfSequences = numberOfSequences;
 
+    this->numberOfSequences = numberOfSequences;
     std::string tmpString;
     for(int i = 0; i < numberOfSequences; ++i) {
         tmpString = sampleSequenceB(lengthOfSequence, backgroundModel);
@@ -756,8 +756,9 @@ std::pair<double, double> SignificanceEstimation::confidenceIntervalCalculation(
     double meanTheta = 0;
     for(int i = 0; i < numberOfSequences; ++i) {
         file >> tmpString;
-        meanTheta += partitionFunction(tmpString, 1) >= threshold ?
-                Z / partitionFunction(tmpString, T) : 0;
+//        meanTheta += partitionFunction(tmpString, 1) >= threshold ?
+//                Z / partitionFunction(tmpString, T) : 0;
+        meanTheta += partitionFunction(tmpString, 1) >= threshold ? 1 : 0;
     }
     meanTheta /= numberOfSequences;
     std::cout << "meanTheta in confidenceIntervalCalculation: " << meanTheta << std::endl;
