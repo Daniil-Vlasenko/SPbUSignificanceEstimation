@@ -128,5 +128,5 @@ public:
     // Analytical calculation of false positive rate.
     double fprCalculation(double threshold);
     // Calculation of confidence interval.
-    std::pair<double, double> confidenceIntervalCalculation(double threshold,  double Z, double T, double significanceLevel);
+    std::pair<double, double> confidenceIntervalCalculation(double threshold, double significanceLevel);
 };

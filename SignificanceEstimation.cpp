@@ -692,7 +692,6 @@ double SignificanceEstimation::fprEstimation(double threshold, double Z, double 
         fprTest += partitionFunction(tmpString, 1) >= threshold ? 1 : 0;
     }
     fpr *= Z / numberOfSequences;
-    std::cout << "meanTheta in fprEstimation: " << fprTest / numberOfSequences << std::endl;
 
     file.close();
     return fpr;
@@ -704,7 +703,7 @@ int SignificanceEstimation::temperatureChoice(int lengthOfSequence, double thres
     double resultT = -1;
 
     // Sample scores for plot and find the first temperature for which >20% of sequences get threshold.
-    for(int T = 1; T < 501; ++T) {
+    for(int T = 1; T < 101; ++T) {
         double count = 0;
         ZCalculation(lengthOfSequence, T);
         emissionsForSampleCalculation(T);
@@ -738,16 +737,13 @@ double SignificanceEstimation::fprCalculation(double threshold) {
     for(int i = 0; i < numberOfSequences; ++i) {
         file >> tmpString;
         fpr += partitionFunction(tmpString, 1) >= threshold ? backgroundModel.probabilityOfString(tmpString) : 0;
-        fprTest += partitionFunction(tmpString, 1) >= threshold ? 1 : 0;
     }
-    std::cout << "meanTheta in fprCalculation: " << fprTest / numberOfSequences << std::endl;
 
     file.close();
     return fpr;
 }
 
-std::pair<double, double> SignificanceEstimation::confidenceIntervalCalculation(double threshold, double Z,
-                                                                                double T, double significanceLevel) {
+std::pair<double, double> SignificanceEstimation::confidenceIntervalCalculation(double threshold, double significanceLevel) {
     std::ifstream file("../" + sample.getSampleFileName());
     assert(file.is_open());
 
@@ -756,12 +752,9 @@ std::pair<double, double> SignificanceEstimation::confidenceIntervalCalculation(
     double meanTheta = 0;
     for(int i = 0; i < numberOfSequences; ++i) {
         file >> tmpString;
-//        meanTheta += partitionFunction(tmpString, 1) >= threshold ?
-//                Z / partitionFunction(tmpString, T) : 0;
         meanTheta += partitionFunction(tmpString, 1) >= threshold ? 1 : 0;
     }
     meanTheta /= numberOfSequences;
-    std::cout << "meanTheta in confidenceIntervalCalculation: " << meanTheta << std::endl;
 
     std::pair<double, double> result;
     Probdist distribution;
