@@ -14,30 +14,64 @@
 \providecommand*{\BibDash}{\ifdim\lastskip>0pt\unskip\nobreak\hskip.2em\fi
 \cyrdash\hskip.2em\ignorespaces}
 
-\bibitem{Compeau15_1}
+\bibitem{Compeau2015}
 \selectlanguageifdefined{english}
 \BibEmph{Compeau~Phillip, Pevzner~Pavel}. How do we compare DNA sequences~//
   Bioinformatics Algorithms: An Active Learning Approach, 2nd Ed. Vol. 1.
   \BibDash
 \newblock Active Learning Publishers, 2015.
 
-\bibitem{Dugad96}
+\bibitem{Dugad1996}
 \selectlanguageifdefined{english}
 A tutorial on Hidden Markov Models~: Rep.~/ Signal Processing and Artifcial
   Neural Networks Laboratory Department of Electrical Engineering Indian
   Institute of Technology~; Executor: Rakesh~Dugad, U.~B.~Desai~: 1996.
 
-\bibitem{Compeau15_2}
+\bibitem{Compeau2015a}
 \selectlanguageifdefined{english}
 \BibEmph{Compeau~Phillip, Pevzner~Pavel}. Why have biologists still not
   developed an HIV vaccine~// Bioinformatics Algorithms: An Active Learning
   Approach, 2nd Ed. Vol. 2. \BibDash
 \newblock Active Learning Publishers, 2015.
 
-\bibitem{Newberg09}
+\bibitem{Newberg2009}
 \selectlanguageifdefined{english}
 \BibEmph{Newberg~Lee~A}. Error statistics of hidden Markov model and hidden
   Boltzmann model results~// \BibEmphi{MC Bioinformatics}. \BibDash
 \newblock 2009.
+
+\bibitem{Vlasenko2022}
+\selectlanguageifdefined{english}
+\BibEmph{Vlasenko~Daniil}. Significance estimation. \BibDash
+\newblock https://github.com/Daniil-Vlasenko/SPbUSignifica nceEstimation.
+  \BibDash
+\newblock 2022.
+
+\bibitem{Stamp2021}
+\selectlanguageifdefined{english}
+\BibEmph{Stamp~Mark}. Introduction to Machine Learning with Applications in
+  Information Security~// A revealing introduction to Hidden Markov Models.
+  \BibDash
+\newblock Chapman and Hall, 2021.
+
+\bibitem{Jurafsky2021}
+\selectlanguageifdefined{english}
+\BibEmph{Jurafsky~Daniel, Martin~James~H.} Speech and Language Processing~//
+  Hidden Markov Models. \BibDash
+\newblock Prentice Hall, 2021.
+
+\bibitem{Rabiner1989}
+\selectlanguageifdefined{english}
+\BibEmph{Rabiner~L.R.} A tutorial on hidden Markov models and selected
+  applications in speech recognition~// \BibEmphi{Proceedings of the IEEE}.
+  \BibDash
+\newblock 1989. \BibDash
+\newblock P.~257 -- 286.
+
+\bibitem{Newberg2008}
+\selectlanguageifdefined{english}
+\BibEmph{Newberg~Lee~A}. Significance of Gapped Sequence Alignments~//
+  \BibEmphi{Journal of Computational Biology}. \BibDash
+\newblock 2008.
 
 \end{thebibliography}
