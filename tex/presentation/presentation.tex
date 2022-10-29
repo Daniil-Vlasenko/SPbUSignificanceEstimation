@@ -68,5 +68,52 @@
 		\end{figure}
 	\end{frame}
 
+	\begin{frame}{Модели}
+		\begin{figure}[h]
+			\includegraphics[width=12cm]{../report/figure2}
+		\end{figure}		
+	\end{frame}
+
+	\begin{frame}{Модели}
+		\begin{defenition}
+			\textit{Вероятность последовательности} $D$ может интерпретироваться и считаться по-разному "--- алгоритмом \textit{Витерби} или \textit{Форвард} алгоритмом.
+		\end{defenition}
+		
+		\begin{equation}
+			s_{max}(D) = \underset{\pi \in \pi_{D}}{max}(s(\pi)),
+		\end{equation}
+	
+		\begin{equation}
+			s_{fw}(D) = \sum_{\pi \in \pi_{D}}s(\pi).
+		\end{equation}
+	
+		\begin{equation}
+			Z(D, T)	= \sum_{\pi \in \pi_{D}}s(\pi)^{\frac{1}{T}}.
+		\end{equation}
+	\end{frame}	
+
+	\begin{frame}{Модели}
+		Мы предполагаем наличие простой фоновой модели $B$ для последовательностей длины $L$ такой, что все $L$ символьных позиций независимы и одинаково распределены в соответствии с некоторым распределением $Pr(d|B)$, где $d$ отражает возможный наблюдаемый символ:
+		\begin{equation}
+			Pr(D|B) = \prod_{i=1}^{L}Pr(d_{i}|B),
+		\end{equation}
+		где $d_{i}$ "--- это $i$-ый наблюдаемый символ последовательности $D$.
+	\end{frame}
+
+	\begin{frame}{Постановка математической проблемы}
+		Ложноположительная вероятность значимости $s_{0}$ для строк длины $L$:	
+		\begin{equation}
+			fpr(s_{0}) =  \sum_{D \in D_{L}} Pr(D|B) \Theta(s(D) \geq s_{0}),
+		\end{equation}
+		где $Pr(D|B)$ "--- условная вероятность последовательности $D$, описываемая фоновой моделью, $s(D)$ "--- вероятность последовательности $D$, считаемая профильной СММ, и
+		\[
+		\Theta(s(D) \geq s_{0}) = 
+		\begin{cases}
+			1, & s(D) \geq s_{0}\\
+			0, & s(D) < s_{0}
+		\end{cases}.
+		\]
+	\end{frame}
+
 
 \end{document}
