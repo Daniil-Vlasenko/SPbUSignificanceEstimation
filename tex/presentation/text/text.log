@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  30 OCT 2022 17:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  30 OCT 2022 18:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -895,31 +895,31 @@ LaTeX Warning: Label `eq:4' multiply defined.
 )
 \openout1 = `text.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 45.
 LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 4
-4.
+5.
  (/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmr.fd
 File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    ... okay on input line 45.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -977,7 +977,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 44.
+Package hyperref Info: Link coloring OFF on input line 45.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -990,9 +990,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count358
 )
-LaTeX Info: Redefining \ref on input line 44.
-LaTeX Info: Redefining \pageref on input line 44.
-LaTeX Info: Redefining \nameref on input line 44.
+LaTeX Info: Redefining \ref on input line 45.
+LaTeX Info: Redefining \pageref on input line 45.
+LaTeX Info: Redefining \nameref on input line 45.
 
 (./text.out) (./text.out)
 \@outlinefile=\write5
@@ -1032,15 +1032,15 @@ Dictionary: translator-numbers-dictionary, Language: English
 ry-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \th on input line 44.
+LaTeX Info: Redefining \th on input line 45.
  (./text.nav)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 81.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1062,16 +1062,16 @@ en already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.133 	\end{frame}
+l.134 	\end{frame}
                   
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
-133.
+134.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Overfull \vbox (1.20154pt too high) detected at line 133
+Overfull \vbox (1.20154pt too high) detected at line 134
  []
 
 [9
@@ -1081,7 +1081,7 @@ Overfull \vbox (1.20154pt too high) detected at line 133
 <../../report/figure1.pdf, id=163, 369.88583pt x 187.78818pt>
 File: ../../report/figure1.pdf Graphic file (type pdf)
 <use ../../report/figure1.pdf>
-Package pdftex.def Info: ../../report/figure1.pdf  used on input line 168.
+Package pdftex.def Info: ../../report/figure1.pdf  used on input line 169.
 (pdftex.def)             Requested size: 284.52756pt x 144.45406pt.
  [11
 
@@ -1090,10 +1090,10 @@ Package pdftex.def Info: ../../report/figure1.pdf  used on input line 168.
 <../../report/figure2.pdf, id=183, 509.30434pt x 105.27519pt>
 File: ../../report/figure2.pdf Graphic file (type pdf)
 <use ../../report/figure2.pdf>
-Package pdftex.def Info: ../../report/figure2.pdf  used on input line 181.
+Package pdftex.def Info: ../../report/figure2.pdf  used on input line 182.
 (pdftex.def)             Requested size: 312.9803pt x 64.69646pt.
 
-Overfull \hbox (5.69043pt too wide) in paragraph at lines 181--181
+Overfull \hbox (5.69043pt too wide) in paragraph at lines 182--182
  [] 
  []
 
@@ -1104,7 +1104,7 @@ Overfull \hbox (5.69043pt too wide) in paragraph at lines 181--181
 
 
  <../../report/figure2.pdf>]
-Overfull \vbox (2.5171pt too high) detected at line 216
+Overfull \vbox (2.5171pt too high) detected at line 217
  []
 
 [17
@@ -1117,19 +1117,19 @@ en already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.260 	\end{frame}
+l.261 	\end{frame}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{eq:2}) has been already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.260 	\end{frame}
+l.261 	\end{frame}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{eq:3}) has been already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.260 	\end{frame}
+l.261 	\end{frame}
                   
 
 ] [21
@@ -1142,11 +1142,11 @@ en already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.323 	\end{frame}
+l.324 	\end{frame}
                   
 
 ]
-Overfull \vbox (4.41531pt too high) detected at line 323
+Overfull \vbox (4.41531pt too high) detected at line 324
  []
 
 [25
@@ -1185,7 +1185,7 @@ Package rerunfilecheck Info: File `text.out' has not changed.
 Here is how much of TeX's memory you used:
  29459 strings out of 478287
  569830 string characters out of 5849289
- 871427 words of memory out of 5000000
+ 871447 words of memory out of 5000000
  46976 multiletter control sequences out of 15000+600000
  485136 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1216,7 +1216,7 @@ nts/type1/public/cm-super/sfss0700.pfb></usr/share/texmf/fonts/type1/public/cm-
 super/sfss0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0900.pfb><
 /usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fon
 ts/type1/public/cm-super/sfss1440.pfb>
-Output written on text.pdf (16 pages, 376861 bytes).
+Output written on text.pdf (16 pages, 375921 bytes).
 PDF statistics:
  508 PDF objects out of 1000 (max. 8388607)
  346 compressed objects within 4 object streams
