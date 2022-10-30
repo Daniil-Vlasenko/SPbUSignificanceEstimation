@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  30 OCT 2022 14:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  30 OCT 2022 15:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1136,19 +1136,19 @@ LaTeX Info: Redefining \th on input line 17.
  (./presentation.nav) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
 
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 43.
+ut line 44.
 
 (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
@@ -1161,18 +1161,18 @@ thkerncmss.
 ] [4
 
 ]
-<../report/figure1.pdf, id=201, 369.88583pt x 187.78818pt>
+<../report/figure1.pdf, id=203, 369.88583pt x 187.78818pt>
 File: ../report/figure1.pdf Graphic file (type pdf)
 <use ../report/figure1.pdf>
-Package pdftex.def Info: ../report/figure1.pdf  used on input line 71.
+Package pdftex.def Info: ../report/figure1.pdf  used on input line 72.
 (pdftex.def)             Requested size: 284.52756pt x 144.45406pt.
  [5
 
  <../report/figure1.pdf>]
-<../report/figure2.pdf, id=238, 509.30434pt x 105.27519pt>
+<../report/figure2.pdf, id=239, 509.30434pt x 105.27519pt>
 File: ../report/figure2.pdf Graphic file (type pdf)
 <use ../report/figure2.pdf>
-Package pdftex.def Info: ../report/figure2.pdf  used on input line 78.
+Package pdftex.def Info: ../report/figure2.pdf  used on input line 79.
 (pdftex.def)             Requested size: 341.43306pt x 70.57736pt.
  [6
 
@@ -1208,10 +1208,10 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 23673 strings out of 478287
- 457712 string characters out of 5849289
- 722252 words of memory out of 5000000
- 41326 multiletter control sequences out of 15000+600000
+ 23675 strings out of 478287
+ 457722 string characters out of 5849289
+ 723275 words of memory out of 5000000
+ 41327 multiletter control sequences out of 15000+600000
  482913 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,122p,489b,741s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1231,10 +1231,10 @@ ic/cm-super/sfss0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800
 mf/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf/fonts/type1/publi
 c/cm-super/sfss1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1440.
 pfb>
-Output written on presentation.pdf (14 pages, 231745 bytes).
+Output written on presentation.pdf (14 pages, 235118 bytes).
 PDF statistics:
- 621 PDF objects out of 1000 (max. 8388607)
- 504 compressed objects within 6 object streams
- 46 named destinations out of 1000 (max. 500000)
+ 622 PDF objects out of 1000 (max. 8388607)
+ 505 compressed objects within 6 object streams
+ 47 named destinations out of 1000 (max. 500000)
  323 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -4,7 +4,7 @@
 
 \title[Оценивание значимости выравнивания]{Задачи оценивания значимости выравнивания при помощи скрытых марковских моделей}
 \author[Власенко Даниил]{Власенко Даниил Владимирович \\ Научный руководитель: к.ф.-м.н. Коробейников А.И.\\ \vspace{1cm} Отчет по производственной практике}
-\date[Декабрь 2021]{Санкт-Петербург\\Декабрь 2021}
+\date[Декабрь 2021]{Санкт-Петербург\\Октябрь 2022}
 \institute[]{Санкт-Петербургский государственный университет\\ Кафедра "Статистического моделирования"} 
 
 \usepackage{amsmath,amssymb,amsthm,amscd,amsfonts}
@@ -24,18 +24,19 @@
 			Выравнивание последовательностей  "--- размещение двух или более последовательностей друг под другом таким образом, чтобы было легче увидеть их схожие участки.
 		\end{defenition}
 	
-		\begin{center}
+		\begin{figure}
 			\begin{tabular}{cccccccc}
 				A&C&E&A&A&F&A&E\\
 				C&E&A&F&D&C&E&\\
 			\end{tabular}
-		\end{center}
-		\begin{center}
+		\end{figure}
+		\begin{figure}
 			\begin{tabular}{ccccccccc}
 				A&C&E&A&A&F&A&—&E\\
 				—&C&E&A&—&F&D&C&E\\
 			\end{tabular}
-		\end{center}
+			\caption{Последовательности до и после выравнивания.} \label{fg:1}
+		\end{figure}
 	
 		\begin{defenition}
 			Значимость выравнивания "--- действительное число $s$, отражающее сходство последовательностей.
@@ -66,14 +67,14 @@
 	\begin{frame}{Обозначения и известные результаты}
 		\begin{figure}[h]
 			\includegraphics[width=10cm]{../report/figure1}
-			\caption{Простая скрытая марковская модель.} \label{fg:1}
+			\caption{Простая скрытая марковская модель.} \label{fg:2}
 		\end{figure}
 	\end{frame}
 
 	\begin{frame}{Обозначения и известные результаты}
 		\begin{figure}[h]
 			\includegraphics[width=12cm]{../report/figure2}
-			\caption{Профильная скрытая марковская модель.}  \label{fg:2}
+			\caption{Профильная скрытая марковская модель.}  \label{fg:3}
 		\end{figure}		
 	\end{frame}
 
