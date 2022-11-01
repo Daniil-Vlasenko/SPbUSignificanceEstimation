@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  1 NOV 2022 19:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  1 NOV 2022 22:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1178,7 +1178,20 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count355
 \l__pdf_internal_box=\box83
 )
-(./text.aux)
+(./text.aux
+
+LaTeX Warning: Label `eq:1' multiply defined.
+
+
+LaTeX Warning: Label `eq:2' multiply defined.
+
+
+LaTeX Warning: Label `eq:1' multiply defined.
+
+
+LaTeX Warning: Label `eq:2' multiply defined.
+
+)
 \openout1 = `text.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
@@ -1359,10 +1372,113 @@ File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
-236.
+233.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
+) [17
+
+
+]
+<../../report/figure1.pdf, id=325, 369.88583pt x 187.78818pt>
+File: ../../report/figure1.pdf Graphic file (type pdf)
+<use ../../report/figure1.pdf>
+Package pdftex.def Info: ../../report/figure1.pdf  used on input line 278.
+(pdftex.def)             Requested size: 227.62204pt x 115.56496pt.
+
+Overfull \vbox (0.18567pt too high) detected at line 278
+ []
+
+[19
+
+
+]
+<../../report/figure2.pdf, id=349, 509.30434pt x 105.27519pt>
+File: ../../report/figure2.pdf Graphic file (type pdf)
+<use ../../report/figure2.pdf>
+Package pdftex.def Info: ../../report/figure2.pdf  used on input line 303.
+(pdftex.def)             Requested size: 312.9803pt x 64.69646pt.
+
+Overfull \hbox (5.69043pt too wide) in paragraph at lines 303--303
+ [] 
+ []
+
+[21
+
+
+ <../../report/figure1.pdf>] [23
+
+
+ <../../report/figure2.pdf>] [25
+
+
+] [27
+
+pdfTeX warning (ext4): destination with the same identifier (name{eq:1}) has be
+en already used, duplicate ignored
+
+\pgfpages@shipoutshipoutbox ...physicalpagesizes }
+                                                  \endgroup 
+l.386 	\end{frame}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{eq:2}) has been already used, duplicate ignored
+
+\pgfpages@shipoutshipoutbox ...physicalpagesizes }
+                                                  \endgroup 
+l.386 	\end{frame}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{eq:1}) has been already used, duplicate ignored
+
+\pgfpages@shipoutshipoutbox ...physicalpagesizes }
+                                                  \endgroup 
+l.386 	\end{frame}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{eq:2}) has been already used, duplicate ignored
+
+\pgfpages@shipoutshipoutbox ...physicalpagesizes }
+                                                  \endgroup 
+l.386 	\end{frame}
+                  
+
+] [29
+
+
+] [31
+
+
+]
+
+LaTeX Warning: Reference `eq:5' on page 33 undefined on input line 465.
+
+[33
+
+pdfTeX warning (ext4): destination with the same identifier (name{eq:4}) has be
+en already used, duplicate ignored
+
+\pgfpages@shipoutshipoutbox ...physicalpagesizes }
+                                                  \endgroup 
+l.465 	\end{frame}
+                  
+
+]
+Overfull \vbox (3.25455pt too high) detected at line 465
+ []
+
+
+LaTeX Warning: Reference `eq:7' on page 35 undefined on input line 500.
+
+[35
+
+
+] [37
+
+
+] [39
+
+
+] (./text.bbl) [41
+
+
+]
 \tf@nav=\write6
 \openout6 = `text.nav'.
 
@@ -1372,24 +1488,30 @@ File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 \tf@snm=\write8
 \openout8 = `text.snm'.
 
- [17
+ [43
 
 
-]
-(./text.aux)
+ </usr/share/texlive/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>] (./tex
+t.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `text.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30028 strings out of 478287
- 576320 string characters out of 5849289
- 851094 words of memory out of 5000000
- 47571 multiletter control sequences out of 15000+600000
- 492027 words of font info for 89 fonts, out of 8000000 for 9000
+ 30255 strings out of 478287
+ 581141 string characters out of 5849289
+ 862837 words of memory out of 5000000
+ 47718 multiletter control sequences out of 15000+600000
+ 495779 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,122p,964b,901s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf
-/fonts/enc/dvips/cm-super/cm-super-t2a.enc}</usr/share/texlive/texmf-dist/fonts
+ 128i,15n,122p,1346b,901s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t2a.enc}{/usr/share/texmf
+/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
@@ -1406,23 +1528,27 @@ dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/m
-atha10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/math
-a5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha6.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha7.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha9.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/mathx10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfsi0900.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfsi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfs
-s0500.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0700.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf/fonts/type1/
-public/cm-super/sfss0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss
-1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1440.pfb>
-Output written on text.pdf (8 pages, 325964 bytes).
+s/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+s10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha5.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha6.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/mathabx-type1/matha7.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/mathabx-type1/matha9.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/mathabx-type1/mathx10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/font
+s/type1/public/cm-super/sfsi0900.pfb></usr/share/texmf/fonts/type1/public/cm-su
+per/sfsi1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfso0900.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfso1000.pfb></usr/share/texmf/fonts
+/type1/public/cm-super/sfss0500.pfb></usr/share/texmf/fonts/type1/public/cm-sup
+er/sfss0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></us
+r/share/texmf/fonts/type1/public/cm-super/sfss0900.pfb></usr/share/texmf/fonts/
+type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm-supe
+r/sfss1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1000.pfb>
+Output written on text.pdf (21 pages, 478336 bytes).
 PDF statistics:
- 435 PDF objects out of 1000 (max. 8388607)
- 266 compressed objects within 3 object streams
- 34 named destinations out of 1000 (max. 500000)
- 535 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 749 PDF objects out of 1000 (max. 8388607)
+ 499 compressed objects within 5 object streams
+ 103 named destinations out of 1000 (max. 500000)
+ 827 words of extra memory for PDF output out of 10000 (max. 10000000)
 
