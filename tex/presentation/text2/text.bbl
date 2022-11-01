@@ -1,0 +1,43 @@
+\begin{thebibliography}{1}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\selectlanguage{#1}\fi}
+\providecommand*{\href}[2]{{\small #2}}
+\providecommand*{\url}[1]{{\small #1}}
+\providecommand*{\BibUrl}[1]{\url{#1}}
+\providecommand*{\BibDOI}[1]{DOI: \href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
+\providecommand{\BibAnnote}[1]{}
+\providecommand*{\BibEmph}[1]{#1}
+\providecommand*{\BibEmphi}[1]{#1}
+\providecommand*{\BibEmphii}[1]{#1}
+\ProvideTextCommandDefault{\cyrdash}{\hbox to.8em{--\hss--}}
+\providecommand*{\BibDash}{\ifdim\lastskip>0pt\unskip\nobreak\hskip.2em\fi
+\cyrdash\hskip.2em\ignorespaces}
+
+\bibitem{Newberg2009}
+\selectlanguageifdefined{english}
+\BibEmph{Newberg~Lee~A}. Error statistics of hidden Markov model and hidden
+  Boltzmann model results~// \BibEmphi{MC Bioinformatics}. \BibDash
+\newblock 2009.
+
+\bibitem{Compeau2015}
+\selectlanguageifdefined{english}
+\BibEmph{Compeau~Phillip, Pevzner~Pavel}. How do we compare DNA sequences~//
+  Bioinformatics Algorithms: An Active Learning Approach, 2nd Ed. Vol. 1.
+  \BibDash
+\newblock Active Learning Publishers, 2015.
+
+\bibitem{Compeau2015a}
+\selectlanguageifdefined{english}
+\BibEmph{Compeau~Phillip, Pevzner~Pavel}. Why have biologists still not
+  developed an HIV vaccine~// Bioinformatics Algorithms: An Active Learning
+  Approach, 2nd Ed. Vol. 2. \BibDash
+\newblock Active Learning Publishers, 2015.
+
+\bibitem{Dugad1996}
+\selectlanguageifdefined{english}
+A tutorial on Hidden Markov Models~: Rep.~/ Signal Processing and Artifcial
+  Neural Networks Laboratory Department of Electrical Engineering Indian
+  Institute of Technology~; Executor: Rakesh~Dugad, U.~B.~Desai~: 1996.
+
+\end{thebibliography}

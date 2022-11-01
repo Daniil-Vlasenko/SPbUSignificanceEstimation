@@ -1,0 +1,116 @@
+\documentclass[ucs, notheorems, handout, 10pt]{beamer}
+
+\usetheme[numbers,totalnumbers,compress, nologo]{Statmod}
+%\usetheme{Madrid}
+\usefonttheme[onlymath]{serif}
+\setbeamertemplate{navigation symbols}{}
+
+\mode<handout> {
+	\usepackage{pgfpages}
+	\setbeameroption{show notes}
+	\pgfpagesuselayout{2 on 1}[a4paper, border shrink=5mm]
+	\setbeamercolor{note page}{bg=white}
+	\setbeamercolor{note title}{bg=gray!10}
+	\setbeamercolor{note date}{fg=gray!10}
+}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{tikz}
+\usepackage{ragged2e}
+\usepackage{amsmath,amssymb,amsthm,amscd,amsfonts, mathabx}
+\setbeamertemplate{caption}[numbered]
+
+\newtheorem{theorem}{Теорема}
+\newtheorem{defenition}{Определение}
+
+\title[Оценивание значимости выравнивания]{Задачи оценивания значимости выравнивания при помощи скрытых марковских моделей}
+
+\author[Власенко Д.В.]{Власенко Даниил Владимирович, гр.19.Б04-мм}
+
+\institute[Санкт-Петербургский Государственный Университет]{%
+	\small
+	Научный руководитель: к.ф.-м.н. Коробейников А.И.\\ \vspace{0.5cm}
+	Санкт-Петербургский государственный университет\\
+	Прикладная математика и информатика\\
+	Вычислительная стохастика и статистические модели\\
+	\vspace{1.25cm}
+	Отчет по производственной практике}
+
+\date[Зачет]{Санкт-Петербург, 2022}
+
+\subject{Talks}
+
+
+\begin{document}
+	
+	\begin{frame}[plain]
+		\titlepage
+		
+		\note{Научный руководитель  к.ф.-м.н., Коробейников А.И.,\\
+			кафедра статистического моделирования}
+	\end{frame}
+	
+	\begin{frame}{Введение}
+		Пусть дан алфавит символов $\Sigma$. 
+		\begin{defenition}Последовательностью длины $L$ над алфавитом $\Sigma$ будем называть такой элемент $X$, что $X \in \Sigma^{L}$. Последовательностью $X$ над алфавитом $\Sigma$ будем называть такой $X$, что $X \in \bigcup_{L=0}^{L=\infty}\Sigma^{L}$.
+		\end{defenition}
+		
+		\begin{defenition}
+			Парное выравниванием последовательностей называется отображение $Q: (\bigcup_{L_1=0}^{L_1=\infty} \Sigma^{L_1} \bigtimes \bigcup_{L_2=0}^{L_2=\infty}\Sigma^{L_2}) \rightarrow (\Sigma^{\max(L_1, L_2)} \bigtimes $ $ \Sigma^{\max(L_1, L_2)})$, такое что:
+			\begin{enumerate}
+				\item Возможны вставки символа --- в последовательностях.
+				\item Вставка --- на одинаковых позициях в обоих последовательностях запрещена.
+				\item Порядок изначальных символов внутри последовательностей сохраняется.
+			\end{enumerate}
+		\end{defenition}		
+		
+		\note{
+			Пусть дан алфавит символов $\Sigma$. 
+			\begin{defenition}Последовательностью длины $L$ над алфавитом $\Sigma$ будем называть такой элемент $X$, что $X \in \Sigma^{L}$. Последовательностью $X$ над алфавитом $\Sigma$ будем называть такой $X$, что $X \in \bigcup_{L=0}^{L=\infty}\Sigma^{L}$.
+			\end{defenition}
+			
+			\begin{defenition}
+				Парное выравниванием последовательностей называется отображение $Q: (\bigcup_{L_1=0}^{L_1=\infty} \Sigma^{L_1} \bigtimes \bigcup_{L_2=0}^{L_2=\infty}\Sigma^{L_2}) \rightarrow (\Sigma^{\max(L_1, L_2)} \bigtimes $ $ \Sigma^{\max(L_1, L_2)})$, такое что:
+				\begin{enumerate}
+					\item Возможны вставки символа --- в последовательностях.
+					\item Вставка --- на одинаковых позициях в обоих последовательностях запрещена.
+					\item Порядок изначальных символов внутри последовательностей сохраняется.
+				\end{enumerate}
+			\end{defenition}
+		}
+	\end{frame}
+
+	\begin{frame}{Введение}
+		\begin{figure}
+			\begin{tabular}{cccccccc}
+				A&C&E&A&A&F&A&E\\
+				C&E&A&F&D&C&E&\\
+			\end{tabular}
+		\end{figure}
+		\begin{figure}
+			\begin{tabular}{ccccccccc}
+				A&C&E&A&A&F&A&—&E\\
+				—&C&E&A&—&F&D&C&E\\
+			\end{tabular}
+			\caption{Последовательности до и после парного выравнивания.} \label{fg:1}
+		\end{figure}
+	
+		Примем множество $\bigcup_{L_1=0}^{L_1=\infty} \Sigma^{L_1} \bigtimes \bigcup_{L_2=0}^{L_2=\infty}\Sigma^{L_2}$ за пространство элементарных исходов $\Omega$. Область значений выравнивания $Q$ обозначим как $\overline \Omega$.
+		
+		\begin{defenition}			
+			Оценкой парного выравнивания называется случайная величина $s:\overline \Omega \rightarrow \mathbb{R}$.
+		\end{defenition}			
+		
+		\note{
+			Примем множество $\bigcup_{L_1=0}^{L_1=\infty} \Sigma^{L_1} \bigtimes \bigcup_{L_2=0}^{L_2=\infty}\Sigma^{L_2}$ за пространство элементарных исходов $\Omega$. Область значений выравнивания $Q$ обозначим как $\overline \Omega$.
+			
+			\begin{defenition}
+				
+				Оценкой парного выравнивания называется случайная величина $s:\overline \Omega \rightarrow \mathbb{R}$.
+			\end{defenition}		
+		}
+	\end{frame}
+	
+\end{document}
