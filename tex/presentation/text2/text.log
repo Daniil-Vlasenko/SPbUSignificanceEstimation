@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  1 NOV 2022 22:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  2 NOV 2022 00:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1398,10 +1398,10 @@ Overfull \vbox (0.18567pt too high) detected at line 278
 <../../report/figure2.pdf, id=349, 509.30434pt x 105.27519pt>
 File: ../../report/figure2.pdf Graphic file (type pdf)
 <use ../../report/figure2.pdf>
-Package pdftex.def Info: ../../report/figure2.pdf  used on input line 303.
+Package pdftex.def Info: ../../report/figure2.pdf  used on input line 304.
 (pdftex.def)             Requested size: 312.9803pt x 64.69646pt.
 
-Overfull \hbox (5.69043pt too wide) in paragraph at lines 303--303
+Overfull \hbox (5.69043pt too wide) in paragraph at lines 304--304
  [] 
  []
 
@@ -1421,25 +1421,25 @@ en already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.386 	\end{frame}
+l.391 	\end{frame}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{eq:2}) has been already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.386 	\end{frame}
+l.391 	\end{frame}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{eq:1}) has been already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.386 	\end{frame}
+l.391 	\end{frame}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{eq:2}) has been already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.386 	\end{frame}
+l.391 	\end{frame}
                   
 
 ] [29
@@ -1455,11 +1455,11 @@ en already used, duplicate ignored
 
 \pgfpages@shipoutshipoutbox ...physicalpagesizes }
                                                   \endgroup 
-l.465 	\end{frame}
+l.489 	\end{frame}
                   
 
 ]
-Overfull \vbox (3.25455pt too high) detected at line 465
+Overfull \vbox (3.25455pt too high) detected at line 489
  []
 
 [35
@@ -1471,7 +1471,10 @@ Overfull \vbox (3.25455pt too high) detected at line 465
 ] [39
 
 
-] (./text.bbl) [41
+] [41
+
+
+] (./text.bbl) [43
 
 
 ]
@@ -1484,7 +1487,7 @@ Overfull \vbox (3.25455pt too high) detected at line 465
 \tf@snm=\write8
 \openout8 = `text.snm'.
 
- [43
+ [45
 
 
  </usr/share/texlive/texmf-dist/tex/latex/beamer/beamericonarticle.pdf>] (./tex
@@ -1496,10 +1499,10 @@ Package rerunfilecheck Info: File `text.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 30265 strings out of 478287
- 581213 string characters out of 5849289
- 863248 words of memory out of 5000000
- 47729 multiletter control sequences out of 15000+600000
+ 30283 strings out of 478287
+ 581797 string characters out of 5849289
+ 863284 words of memory out of 5000000
+ 47743 multiletter control sequences out of 15000+600000
  494971 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,122p,1346b,901s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1538,10 +1541,10 @@ er/sfss0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sfss0900.pfb></usr/share/texmf/fonts/
 type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm-supe
 r/sfss1440.pfb>
-Output written on text.pdf (21 pages, 464217 bytes).
+Output written on text.pdf (22 pages, 474294 bytes).
 PDF statistics:
- 742 PDF objects out of 1000 (max. 8388607)
- 494 compressed objects within 5 object streams
- 103 named destinations out of 1000 (max. 500000)
- 827 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 790 PDF objects out of 1000 (max. 8388607)
+ 518 compressed objects within 6 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 959 words of extra memory for PDF output out of 10000 (max. 10000000)
 
