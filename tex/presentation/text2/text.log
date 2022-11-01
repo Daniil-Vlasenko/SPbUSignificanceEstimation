@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  1 NOV 2022 13:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.8.17)  1 NOV 2022 15:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1320,13 +1320,13 @@ Dictionary: translator-theorem-dictionary, Language: English
 )
 LaTeX Info: Redefining \th on input line 46.
  (./text.nav)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 83.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 87.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 83.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1341,17 +1341,22 @@ File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 ) [5
 
 
-]
-Overfull \vbox (0.73477pt too high) detected at line 117
- []
-
-[7
+] [7
 
 
 ] [9
 
 
 ]
+[11
+
+
+]
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
+191.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
+File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
 \tf@nav=\write6
 \openout6 = `text.nav'.
 
@@ -1361,7 +1366,7 @@ Overfull \vbox (0.73477pt too high) detected at line 117
 \tf@snm=\write8
 \openout8 = `text.snm'.
 
- [11
+ [13
 
 
 ] (./text.aux)
@@ -1369,45 +1374,44 @@ Package rerunfilecheck Info: File `text.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 29983 strings out of 478287
- 574434 string characters out of 5849289
- 867877 words of memory out of 5000000
- 47528 multiletter control sequences out of 15000+600000
- 503615 words of font info for 102 fonts, out of 8000000 for 9000
+ 30003 strings out of 478287
+ 575665 string characters out of 5849289
+ 857452 words of memory out of 5000000
+ 47554 multiletter control sequences out of 15000+600000
+ 492027 words of font info for 89 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,122p,987b,987s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t2a.enc}</usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/mathabx-type1/matha10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/mathabx-type1/matha5.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/mathabx-type1/matha6.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/mathabx-type1/matha7.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/mathabx-type1/matha9.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/mathabx-type1/mathx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
-fsi0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsi1000.pfb></usr/sh
-are/texmf/fonts/type1/public/cm-super/sfso0900.pfb></usr/share/texmf/fonts/type
-1/public/cm-super/sfso1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
-ss0500.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0700.pfb></usr/sha
-re/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfss0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfs
-s1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1440.pfb></usr/shar
-e/texmf/fonts/type1/public/cm-super/sfsx0900.pfb></usr/share/texmf/fonts/type1/
-public/cm-super/sfsx1000.pfb>
-Output written on text.pdf (5 pages, 267600 bytes).
+ 128i,15n,122p,990b,987s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf
+/fonts/enc/dvips/cm-super/cm-super-t2a.enc}</usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/mathabx-type1/matha10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/mathabx-type1/matha5.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/mathabx-type1/matha6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ma
+thabx-type1/matha7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathab
+x-type1/matha9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathabx-ty
+pe1/mathx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsi0900.pfb></usr
+/share/texmf/fonts/type1/public/cm-super/sfsi1000.pfb></usr/share/texmf/fonts/t
+ype1/public/cm-super/sfss0500.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sfss0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/
+share/texmf/fonts/type1/public/cm-super/sfss0900.pfb></usr/share/texmf/fonts/ty
+pe1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/
+sfss1440.pfb>
+Output written on text.pdf (6 pages, 270038 bytes).
 PDF statistics:
- 378 PDF objects out of 1000 (max. 8388607)
- 221 compressed objects within 3 object streams
- 22 named destinations out of 1000 (max. 500000)
- 511 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 365 PDF objects out of 1000 (max. 8388607)
+ 220 compressed objects within 3 object streams
+ 26 named destinations out of 1000 (max. 500000)
+ 463 words of extra memory for PDF output out of 10000 (max. 10000000)
 
