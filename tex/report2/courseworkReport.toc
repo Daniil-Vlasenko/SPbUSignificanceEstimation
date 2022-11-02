@@ -1,0 +1,15 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1.\hskip 1em}Введение}{3}{section.0.1}%
+\contentsline {section}{\numberline {2.\hskip 1em}Метод}{5}{section.0.2}%
+\contentsline {subsection}{\numberline {2.1.\hskip 1em}Модели}{5}{subsection.0.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1.\hskip 1em}Скрытая марковская модель}{5}{subsubsection.0.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2.\hskip 1em}Профильная скрытая марковская модель}{6}{subsubsection.0.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3.\hskip 1em}Фоновая модель}{7}{subsubsection.0.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4.\hskip 1em}Постановка математической задачи.}{8}{subsubsection.0.2.1.4}%
+\contentsline {subsection}{\numberline {2.2.\hskip 1em}Алгоритм}{8}{subsection.0.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1.\hskip 1em}Выборка по значимости}{8}{subsubsection.0.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2.\hskip 1em}Моделирование выборки}{9}{subsubsection.0.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3.\hskip 1em}Оценивание ложноположительной вероятности значимости}{10}{subsubsection.0.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4.\hskip 1em}Выбор T}{10}{subsubsection.0.2.2.4}%
+\contentsline {section}{\numberline {3.\hskip 1em}Результаты}{10}{section.0.3}%
+\contentsline {chapter}{\cyrillictext \CYRS \cyrp \cyri \cyrs \cyro \cyrk \ \cyrl \cyri \cyrt \cyre \cyrr \cyra \cyrt \cyru \cyrr \cyrery }{12}{chapter*.9}%
