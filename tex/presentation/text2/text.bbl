@@ -27,13 +27,6 @@
   Boltzmann model results~// \BibEmphi{MC Bioinformatics}. \BibDash
 \newblock 2009.
 
-\bibitem{Compeau2015}
-\selectlanguageifdefined{english}
-\BibEmph{Compeau~Phillip, Pevzner~Pavel}. How do we compare DNA sequences~//
-  Bioinformatics Algorithms: An Active Learning Approach, 2nd Ed. Vol. 1.
-  \BibDash
-\newblock Active Learning Publishers, 2015.
-
 \bibitem{Dugad1996}
 \selectlanguageifdefined{english}
 A tutorial on Hidden Markov Models~: Rep.~/ Signal Processing and Artifcial

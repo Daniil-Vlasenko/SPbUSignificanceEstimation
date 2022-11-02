@@ -283,8 +283,7 @@
 			\caption{Профильная скрытая марковская модель.}  \label{fg:3}
 		\end{figure}	
 		
-		Пусть дана $X \in \Sigma$, $\overline{\omega} \in \overline{\Omega}$. Профильные СММ состоят из трех типов состояний, распределения которых строятся на основе $\overline{\omega}$ \cite[Why have biologists still not
-		developed an HIV vaccine]{Compeau2015a}:
+		Пусть дана $X \in \Sigma$, $\overline{\omega} \in \overline{\Omega}$. Профильные СММ состоят из трех типов состояний, распределения которых строятся на основе $\overline{\omega}$ (Compeau Phillip, Pevzner Pavel 2015):
 		\begin{itemize}
 			\item S-состояние --- начальное состояние,
 			\item М-состояния --- устанавливают соответствие символов в $X$ и $\overline{\omega}$,
@@ -304,9 +303,7 @@
 	\end{frame}
 
 	\begin{frame}{Обозначения и известные результаты}				
-		Алгоритмы профильных СММ позволяют по-разному оценивать выравнивание $X$ к $\overline{\omega}$ \cite[Why have biologists still not
-		developed an HIV vaccine, Error statistics of hidden Markov model and hidden
-		Boltzmann model results]{Compeau2015a, Newberg2009}. 
+		Алгоритмы профильных СММ позволяют по-разному оценивать выравнивание $X$ к $\overline{\omega}$ (Newberg Lee A. 2009; Rakesh Dugad 1996). 
 		
 		\begin{defenition}
 			Вероятность пути $s(\pi)$ "--- произведение всех переходных вероятностей от состояний к состоянию и вероятностей наблюдаемых символов, которые излучаются в каждом состоянии, кроме начального и конечного, на протяжении всего пути $\pi$. 
@@ -343,9 +340,7 @@
 	
 	\setcounter{framenumber}{9}
 	\begin{frame}{Обозначения и известные результаты}				
-		Алгоритмы профильных СММ позволяют по-разному оценивать выравнивание $X$ к $\overline{\omega}$ \cite[Why have biologists still not
-		developed an HIV vaccine, Error statistics of hidden Markov model and hidden
-		Boltzmann model results]{Compeau2015a, Newberg2009}. 
+		Алгоритмы профильных СММ позволяют по-разному оценивать выравнивание $X$ к $\overline{\omega}$ (Newberg Lee A. 2009; Rakesh Dugad 1996).
 		
 		\begin{defenition}
 			Вероятность пути $s(\pi)$ "--- произведение всех переходных вероятностей от состояний к состоянию и вероятностей наблюдаемых символов, которые излучаются в каждом состоянии, кроме начального и конечного, на протяжении всего пути $\pi$. 
@@ -428,9 +423,9 @@
 	\begin{frame}{Обозначения и известные результаты}
 		\begin{defenition}
 			Ложноположительная вероятность оценки $s_{0}$ для строк длины $L$:	
-			\begin{equation}
+			\begin{equation*}
 				fpr(s_{0}) =  \sum_{X \in X_{L}} \mathsf{P}(X|B) \Theta(s(X) \geq s_{0}), \label{eq:5}
-			\end{equation}
+			\end{equation*}
 			где $\mathsf{P}(X|B)$ "--- условная вероятность последовательности $X$, описываемая фоновой моделью, $s(X)$ "--- оценка последовательности $X$, считаемая профильной СММ, и
 			\[
 			\Theta(s(X) \geq s_{0}) = 
@@ -469,9 +464,9 @@
 			fpr(s_{0}) = \sum_{X \in X_{L}} \mathsf{P}(X|T) f(X,s_{0}), \label{eq:6}
 		\end{equation*}
 		где
-		\begin{equation}
+		\begin{equation*}
 			f(X,s_{0}) = \frac{\mathsf{P}(X|B) \Theta(s(X) \geq s_{0})}{\mathsf{P}(X|T)}. \label{eq:7}
-		\end{equation}		
+		\end{equation*}		
 		
 		\note{
 			Так как вычисление $fpr(s_{0})$ по определению обычно неосуществимо, значение $fpr(s_{0})$ может быть оценено через выборку по значимости, то есть через моделирование строк в соответствии с фоновой моделью $B$ и оценивание значения $fpr(s_{0})$ долей тех из них, что достигают оценки $s_{0}$.
@@ -520,14 +515,14 @@
 	\end{frame}
 	
 	\begin{frame}{Обозначения и известные результаты}
-			Моделируем $\{X_i\}_{i=1}^N$ в соответствии с распределением $\mathsf{P}(X|T)$ \cite[Error statistics of hidden Markov model and hidden Boltzmann model results]{Newberg2009}, вычисляем $f(X, s_{0})$ для каждой последовательности и использовать среднее этих значений как оценку $fpr(s_{0})$.
+			Моделируем $\{X_i\}_{i=1}^N$ в соответствии с распределением $\mathsf{P}(X|T)$ (Newberg Lee A. 2009), вычисляем $f(X, s_{0})$ для каждой последовательности и использовать среднее этих значений как оценку $fpr(s_{0})$:
 			
 			\begin{equation*}	
 				\widehat{fpr}(s_{0}) = \frac{Z(T)}{N} \sum_{1}^{N} \frac{\Theta(s(X_{i}) \geq s_{0})}{Z(X_{i}, T)}
 			\end{equation*}	
 		
 		\note{
-			Моделируем $\{X_i\}_{i=1}^N$ в соответствии с распределением $\mathsf{P}(X|T)$, вычисляем $f(X, s_{0})$ для каждой последовательности и использовать среднее этих значений как оценку $fpr(s_{0})$.
+			Моделируем $\{X_i\}_{i=1}^N$ в соответствии с распределением $\mathsf{P}(X|T)$, вычисляем $f(X, s_{0})$ для каждой последовательности и использовать среднее этих значений как оценку $fpr(s_{0})$:
 			
 			\begin{equation*}	
 				\widehat{fpr}(s_{0}) = \frac{Z(T)}{N} \sum_{1}^{N} \frac{\Theta(s(X_{i}) \geq s_{0})}{Z(X_{i}, T)}
@@ -559,7 +554,7 @@
 					$10^{-100}$&7&0.615709&[0.597540 0.622677] \\
 				\end{tabular}
 			\end{center}
-			Вычисление $fpr(s_{0})$ перебором привело бы к перебору $5^{100}$ строк, что неосуществимо, если бы мы вычисляли перебором всех строк длины $L$.
+			Вычисление $fpr(s_{0})$ перебором привело бы к перебору $5^{100}$ строк.
 		}
 	\end{frame}
 	
@@ -578,21 +573,5 @@
 			\end{itemize}
 		}
 	\end{frame}	
-	
-	
-	
-	
-	\begin{frame}{Список литературы}
-		\nocite{Newberg2009}
-		\nocite{Compeau2015}
-		\nocite{Compeau2015a}
-		\nocite{Dugad1996}		
-		\bibliographystyle{../../report/ugost2008mod}
-		\bibliography{../../report/references}   
-		
-		\note{
-			На данном слайде представлен список основных источников, используемых в моей работе.
-		}
-	\end{frame}
 	
 \end{document}
